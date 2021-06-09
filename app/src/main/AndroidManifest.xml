@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.aumaid.jobskash">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KashJobs">
-        <activity android:name=".User.HomePage"></activity>
+        <activity android:name=".Common.SuccessScreen"></activity>
+        <activity android:name=".User.PostJobs" />
+        <activity android:name=".User.HomePage" />
         <activity android:name=".Common.VerifyOtp" />
         <activity android:name=".Common.LogInSignUp.SignUpThirdPage" />
         <activity android:name=".Common.LogInSignUp.SignUpSecondPage" />

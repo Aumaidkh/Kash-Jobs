@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Common.SuccessScreen"
+    android:padding="30dp">
+
+
+
+    <TextView
+        android:id="@+id/success_sign_in_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="140dp"
+        android:fontFamily="@font/muli_light"
+        android:text="@string/reset_password_text"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:textColor="@color/black"
+        android:textSize="40sp"/>
+
+    <ImageView
+        android:id="@+id/lock_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/success_icon"
+        android:layout_gravity="center"
+        app:tint="#4BB543"
+        />
+
+    <TextView
+        android:id="@+id/success_congrats_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/muli_light"
+        android:text="@string/your_password_updated_text"
+        android:textAlignment="center"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:textColor="@color/black"
+        android:textSize="12sp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/success_screen_log_in_btn"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/black"
+        android:fontFamily="@font/muli_light"
+        android:text="@string/sign_in"
+        android:textColor="@color/white"
+        app:iconGravity="textStart"
+        app:iconSize="35dp"
+        app:iconTint="@color/start_color" />
+
+
+
+
+
+</LinearLayout>

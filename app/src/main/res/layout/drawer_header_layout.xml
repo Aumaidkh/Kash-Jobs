@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:background="@drawable/gradient_background">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/chinarleaf"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/chinar_leaf"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="30dp"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/kashjobs_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/kash_jobs"
+        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/montserrat_bold"
+        android:layout_below="@+id/chinarleaf"
+        android:layout_marginStart="30dp"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/founder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/founder"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/roboto_light"
+        android:layout_below="@+id/kashjobs_logo"
+        android:layout_marginStart="30dp"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/founder_name"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/roboto_light"
+        android:layout_toEndOf="@id/founder"
+        android:layout_below="@id/kashjobs_logo"
+        android:layout_marginStart="4dp"/>
+
+</RelativeLayout>

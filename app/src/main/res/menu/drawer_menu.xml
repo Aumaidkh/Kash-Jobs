@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/find_job_btn"
+            android:icon="@drawable/search_icon"
+            android:title="@string/find_job" />
+
+        <item
+            android:id="@+id/drawer_post_job_btn"
+            android:icon="@drawable/post_icon"
+            android:title="@string/post_job" />
+
+    </group>
+    <item android:title="@string/profile">
+
+        <menu>
+
+            <group android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/profile_btn"
+                    android:icon="@drawable/profile_icon"
+                    android:title="@string/profile" />
+
+                <item
+                    android:id="@+id/log_in_btn"
+                    android:icon="@drawable/log_in_icon"
+                    android:title="@string/sign_in" />
+
+                <item
+                    android:id="@+id/log_out_btn"
+                    android:icon="@drawable/log_out_icon"
+                    android:title="@string/sign_out" />
+
+            </group>
+        </menu>
+
+    </item>
+
+    <item android:title="@string/communicate">
+
+        <menu>
+
+            <group android:checkableBehavior="none">
+
+                <item
+                    android:id="@+id/share_btn"
+                    android:icon="@drawable/share_icon"
+                    android:title="@string/share" />
+
+                <item
+                    android:id="@+id/rate_btn"
+                    android:icon="@drawable/rate_icon"
+                    android:title="@string/rate_us" />
+
+
+            </group>
+        </menu>
+
+    </item>
+
+</menu>
