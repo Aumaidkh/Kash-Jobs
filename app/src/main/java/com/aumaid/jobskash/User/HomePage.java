@@ -84,9 +84,8 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
     @Override
     protected void onResume() {
         super.onResume();
-        Toast.makeText(getApplicationContext(),"OnResumeCalled", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getApplicationContext(),"OnResumeCalled", Toast.LENGTH_SHORT).show();
     }
-
 
 
     //Dealing with navigation bar
@@ -160,7 +159,6 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         return true;
     }
 
-
     public void addJobs(){
         //
 
@@ -168,7 +166,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         // Create a instance of the database and get
         // its reference
         mbase
-                = FirebaseDatabase.getInstance("https://kash-jobs-9b913-jobs-rtdb.firebaseio.com/")
+                = FirebaseDatabase.getInstance("https://kash-jobs-a8dc9-jobs-rtdb.firebaseio.com/")
                 .getReference("Jobs");
 
         mRecyclerView = findViewById(R.id.recyclerview1);

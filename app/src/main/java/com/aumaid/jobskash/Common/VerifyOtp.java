@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.aumaid.jobskash.Database.UserHelperClass;
 import com.aumaid.jobskash.R;
 import com.aumaid.jobskash.User.HomePage;
 import com.chaos.view.PinView;
@@ -25,6 +26,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.concurrent.TimeUnit;
 
@@ -186,6 +189,11 @@ public class VerifyOtp extends AppCompatActivity {
         verifyCode(_otp);
     }
 
-    public void saveData() {
+    public void saveData(){
+        FirebaseDatabase rootNode = FirebaseDatabase.getInstance();
+        DatabaseReference reference = rootNode.getReference("Users");
+
+        UserHelperClass user = new UserHelperClass(_fullname, _username, _email, _password, _gender, _dateOfBirth, _phoneNumber);
+        reference.child(_username).setValue(user);
     }
 }
