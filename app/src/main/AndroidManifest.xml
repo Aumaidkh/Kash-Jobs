@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.aumaid.jobskash">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.KashJobs">
+        <activity android:name=".Common.VerifyOtp"></activity>
+        <activity android:name=".Common.LogInSignUp.SignUpThirdPage" />
+        <activity android:name=".Common.LogInSignUp.SignUpSecondPage" />
+        <activity android:name=".Common.LogInSignUp.SignUpFirstPage" />
+        <activity android:name=".Common.LogInSignUp.SignInPage" />
+        <activity android:name=".Common.WelcomeScreen" />
+        <activity android:name=".Common.SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

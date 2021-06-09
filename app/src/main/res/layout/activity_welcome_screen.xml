@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20dp"
+    android:orientation="vertical"
+    tools:context=".Common.WelcomeScreen">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="150dp"
+        android:src="@drawable/chinar_leaf_blue" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_marginTop="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/muli_black"
+        android:text="@string/looking_for_you"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="36sp"
+        app:textAllCaps="true" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/muli"
+        android:text="@string/slogan"
+        android:textAlignment="center"
+        android:textColor="@color/black" />
+
+    <LinearLayout
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/welcome_log_in_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/start_color"
+            android:text="@string/sign_in"
+            android:onClick="signInPage"
+            android:transitionName="transition_login"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/welcome_sign_up_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/start_color"
+            android:text="@string/sign_up"
+            android:onClick="signUpPage"
+            android:transitionName="transtion_signup"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/how_we_work_button"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="true"
+        android:text="@string/how_we_work"
+        android:background="#00000000"
+        android:textColor="@color/black"/>
+
+
+</LinearLayout>
