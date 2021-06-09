@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Common.LogInSignUp.VerifyOtp"
+    tools:context=".Common.VerifyOtp"
     android:background="@color/white"
     android:transitionName="transition_next">
 
@@ -59,6 +59,19 @@
             android:includeFontPadding="false"
             android:layout_gravity="center"
             />
+        <TextView
+            android:id="@+id/vo_phone_number_tv"
+            android:layout_marginTop="6dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/phone_number"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:fontFamily="@font/muli"
+            android:textAlignment="center"
+            android:includeFontPadding="false"
+            android:layout_gravity="center"
+            />
 
         <com.chaos.view.PinView
             android:id="@+id/pin_view"
@@ -79,7 +92,7 @@
             app:itemRadius="5dp"
             />
 
-        <Button
+        <Button android:id="@+id/verify_otp_btn"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:backgroundTint="@color/start_color"

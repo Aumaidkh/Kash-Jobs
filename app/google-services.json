@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1015515153339",
+    "project_id": "kash-jobs-a8dc9",
+    "storage_bucket": "kash-jobs-a8dc9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1015515153339:android:ca7ee3812aa0efe81d3a9e",
+        "android_client_info": {
+          "package_name": "com.aumaid.jobskash"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1015515153339-3dtfudonag4l249mkt48k7juo8rovli0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aumaid.jobskash",
+            "certificate_hash": "8d5e496b348713577ecd2e4981f66a157627e4e3"
+          }
+        },
+        {
+          "client_id": "1015515153339-opfm8938uiev3i4ctksdi8ccek8uhek1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCef3U7DgOZmJlZpyLc_UrKfvG12EOfJ-k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1015515153339-opfm8938uiev3i4ctksdi8ccek8uhek1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

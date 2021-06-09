@@ -67,7 +67,7 @@
     <!--Otp Screen-->
     <string name="otp_code_text">Co<br></br>de</string>
     <string name="otp_verification_text">Verification</string>
-    <string name="otp_description_text">Enter the one time password sent on<br></br> +917889534384</string>
+    <string name="otp_description_text">Enter the one time password sent on</string>
     <string name="verify_code">Verify Code</string>
     <string name="provide_your_account_s_email_for_which_you_want_to_reset_your_password">Provide your account\'s email for which you want to reset your password</string>
     <string name="reset_now_btn">Reset Now</string>
