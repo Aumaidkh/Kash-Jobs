@@ -131,5 +131,6 @@ public class SignInPage extends AppCompatActivity {
 
     private void presetHomeScreen(){
         startActivity(new Intent(getApplicationContext(), HomePage.class));
+        finish();
     }
 }
