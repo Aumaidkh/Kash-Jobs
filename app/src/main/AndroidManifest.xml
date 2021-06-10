@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KashJobs">
-        <activity android:name=".Common.SuccessScreen"></activity>
+        <activity android:name=".Common.ForgotPassword.NewPassword"></activity>
+        <activity android:name=".Common.ForgotPassword.FindAccount" />
+        <activity android:name=".Common.SuccessScreen" />
         <activity android:name=".User.PostJobs" />
         <activity android:name=".User.HomePage" />
         <activity android:name=".Common.VerifyOtp" />

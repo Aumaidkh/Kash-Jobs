@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.aumaid.jobskash.Common.ForgotPassword.NewPassword;
 import com.aumaid.jobskash.Database.UserHelperClass;
 import com.aumaid.jobskash.HelperClasses.ConnectionChecker;
 import com.aumaid.jobskash.R;
@@ -55,6 +56,7 @@ public class VerifyOtp extends AppCompatActivity {
     String _gender;
     String _dateOfBirth;
     String _phoneNumber;
+    String _Option = "";
 
     private PhoneAuthProvider.ForceResendingToken mResendToken;
 
@@ -85,6 +87,8 @@ public class VerifyOtp extends AppCompatActivity {
         _gender = getIntent().getStringExtra("GENDER");
         _dateOfBirth = getIntent().getStringExtra("DATE_OF_BIRTH");
         _phoneNumber = getIntent().getStringExtra("PHONE_NUMBER");
+       // _Option = getIntent().getStringExtra("OPTION");
+
 
         pinView = findViewById(R.id.pin_view);
         mVerifyOtp = findViewById(R.id.verify_otp_btn);
@@ -163,7 +167,9 @@ public class VerifyOtp extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
+
+
+
                             Log.d(TAG, "signInWithCredential:success");
 
                             FirebaseUser user = task.getResult().getUser();
@@ -171,6 +177,7 @@ public class VerifyOtp extends AppCompatActivity {
 
                             saveData();
                             startActivity(new Intent(getApplicationContext(), HomePage.class));
+
                             finish();
 
                         } else {

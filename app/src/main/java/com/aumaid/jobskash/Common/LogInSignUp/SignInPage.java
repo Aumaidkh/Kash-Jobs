@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.aumaid.jobskash.Common.ForgotPassword.FindAccount;
 import com.aumaid.jobskash.HelperClasses.ConnectionChecker;
 import com.aumaid.jobskash.R;
 import com.aumaid.jobskash.User.HomePage;
@@ -131,6 +132,11 @@ public class SignInPage extends AppCompatActivity {
 
     private void presetHomeScreen(){
         startActivity(new Intent(getApplicationContext(), HomePage.class));
+        finish();
+    }
+
+    public void forgetPasswordPage(View view){
+        startActivity(new Intent(getApplicationContext(), FindAccount.class));
         finish();
     }
 }
