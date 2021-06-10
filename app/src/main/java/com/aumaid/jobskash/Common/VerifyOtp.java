@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aumaid.jobskash.Database.UserHelperClass;
+import com.aumaid.jobskash.HelperClasses.ConnectionChecker;
 import com.aumaid.jobskash.R;
 import com.aumaid.jobskash.User.HomePage;
 import com.chaos.view.PinView;
@@ -62,6 +63,12 @@ public class VerifyOtp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verify_otp);
 
+        /*Internet Connection check here*/
+        ConnectionChecker connectionChecker = new ConnectionChecker();
+        if(!connectionChecker.isConnected(this)){
+            Toast.makeText(getApplicationContext(),"No internet connection",Toast.LENGTH_SHORT).show();
+            return;
+        }
         prepareOtpScreen();
         sendVerificationCodeTo(_phoneNumber);
 

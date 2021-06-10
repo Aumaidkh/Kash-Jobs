@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.aumaid.jobskash.HelperClasses.ConnectionChecker;
 import com.aumaid.jobskash.R;
 
 public class SplashScreen extends AppCompatActivity {
@@ -26,7 +28,13 @@ public class SplashScreen extends AppCompatActivity {
 
         animateSplashScreen();
 
-        /*If check Here*/
+        /*Internet Connection check here*/
+        ConnectionChecker connectionChecker = new ConnectionChecker();
+        if(!connectionChecker.isConnected(this)){
+            Toast.makeText(getApplicationContext(),"No internet connection",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

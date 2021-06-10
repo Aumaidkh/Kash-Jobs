@@ -8,8 +8,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.aumaid.jobskash.HelperClasses.ConnectionChecker;
 import com.aumaid.jobskash.R;
 import com.aumaid.jobskash.User.HomePage;
 import com.google.android.material.textfield.TextInputEditText;
@@ -23,6 +25,7 @@ public class SignInPage extends AppCompatActivity {
 
     /*Declaring Views*/
     TextInputEditText mUsername, mPassword;
+    RelativeLayout mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +35,19 @@ public class SignInPage extends AppCompatActivity {
         /*Creating Hooks*/
         mUsername = findViewById(R.id.sign_in_email_box);
         mPassword = findViewById(R.id.sign_in_password_box);
+        mProgressBar = findViewById(R.id.progress_bar);
+
+
     }
 
-    //TODO: Un Implemented function
     public void signIn(View view) {
-        /*Testing Home Screen*/
-        // startActivity(new Intent(getApplicationContext(), HomePage.class));
+        /*Internet Connection check here*/
+        ConnectionChecker connectionChecker = new ConnectionChecker();
+        if(!connectionChecker.isConnected(this)){
+            Toast.makeText(getApplicationContext(),"No internet connection",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        mProgressBar.setVisibility(View.VISIBLE);
         checkUser();
 
 
@@ -76,15 +86,18 @@ public class SignInPage extends AppCompatActivity {
                         /*Creating session*/
 
                         /*Presend home activity*/
+                        mProgressBar.setVisibility(View.GONE);
                         presetHomeScreen();
 
                     }else{
                         /*Invalid password*/
+                        mProgressBar.setVisibility(View.GONE);
                         Toast.makeText(getApplicationContext(),"Password doesn't match",Toast.LENGTH_SHORT).show();
                     }
 
                 }else{
                     //Invalid username
+                    mProgressBar.setVisibility(View.GONE);
                     Toast.makeText(getApplicationContext(),"Invalid Username",Toast.LENGTH_SHORT).show();
 
                 }

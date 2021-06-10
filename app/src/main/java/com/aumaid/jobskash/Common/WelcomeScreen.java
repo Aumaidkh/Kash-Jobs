@@ -7,9 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
+import android.widget.Toast;
 
 import com.aumaid.jobskash.Common.LogInSignUp.SignInPage;
 import com.aumaid.jobskash.Common.LogInSignUp.SignUpFirstPage;
+import com.aumaid.jobskash.HelperClasses.ConnectionChecker;
 import com.aumaid.jobskash.R;
 
 public class WelcomeScreen extends AppCompatActivity {
@@ -24,6 +26,13 @@ public class WelcomeScreen extends AppCompatActivity {
 
 
     public boolean signInPage(View view) {
+
+        /*Internet Connection check here*/
+        ConnectionChecker connectionChecker = new ConnectionChecker();
+        if(!connectionChecker.isConnected(this)){
+            Toast.makeText(getApplicationContext(),"No internet connection",Toast.LENGTH_SHORT).show();
+            return false;
+        }
         Intent mSignUpIntent = new Intent(getApplicationContext(), SignInPage.class);
 
         /*Making Transition Animation*/
@@ -36,6 +45,13 @@ public class WelcomeScreen extends AppCompatActivity {
     }
 
     public boolean signUpPage(View view){
+
+        /*Internet Connection check here*/
+        ConnectionChecker connectionChecker = new ConnectionChecker();
+        if(!connectionChecker.isConnected(this)){
+            Toast.makeText(getApplicationContext(),"No internet connection",Toast.LENGTH_SHORT).show();
+            return false;
+        }
 
         Intent mSignUpIntent = new Intent(getApplicationContext(), SignUpFirstPage.class);
 
