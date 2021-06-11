@@ -10,6 +10,7 @@ import android.util.Pair;
 import android.view.View;
 import android.widget.Toast;
 
+import com.aumaid.jobskash.Common.ForgotPassword.FindAccount;
 import com.aumaid.jobskash.R;
 import com.aumaid.jobskash.User.HomePage;
 import com.google.android.material.textfield.TextInputEditText;
@@ -99,6 +100,19 @@ public class SignInPage extends AppCompatActivity {
         });
     }
 
+
+
+    public boolean fetchUserData(){
+        return true;
+    }
+
+
+    private void presetHomeScreen(){
+        startActivity(new Intent(getApplicationContext(), HomePage.class));
+    }
+
+    /*Implementing Buttons functionality*/
+    /*Create Account*/
     public boolean signUpPage(View view){
 
         Intent mSignUpIntent = new Intent(getApplicationContext(), SignUpFirstPage.class);
@@ -111,12 +125,11 @@ public class SignInPage extends AppCompatActivity {
         return true;
     }
 
-    public boolean fetchUserData(){
+    /*Forget Password*/
+    public boolean forgotPasswordPage(View view){
+        startActivity(new Intent(getApplicationContext(), FindAccount.class));
+        finish();
         return true;
     }
 
-
-    private void presetHomeScreen(){
-        startActivity(new Intent(getApplicationContext(), HomePage.class));
-    }
 }

@@ -149,6 +149,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                 Intent mLogInIntent = new Intent(getApplicationContext(), SignInPage.class);
                 startActivity(mLogInIntent);
                 finish();
+                break;
 
             case R.id.drawer_post_job_btn:
                 /*Check if user is logged in and if he is not present him the log in screen*/

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/gradient_background"
-    tools:context=".Common.LogInSignUp.SignInActivity"
+    tools:context=".Common.LogInSignUp.SignInPage"
     android:padding="30dp"
     android:transitionName="transition_login">
 
