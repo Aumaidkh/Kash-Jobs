@@ -13,12 +13,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.aumaid.jobskash.Adapters.JobAdapter;
 import com.aumaid.jobskash.Common.LogInSignUp.SignInPage;
 import com.aumaid.jobskash.Database.JobHelperClass;
 import com.aumaid.jobskash.R;
+import com.aumaid.jobskash.User.PostJobs.PostJobsFirstPage;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -34,9 +37,12 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
     final String perMonth = " /Month";
     final String postedOn = " Posted on";
 
+    /*Progress bar*/
+    ProgressBar progressBar;
+
     FirebaseAuth mAuth;
     ImageView mDrawerToggleButton;
-    LinearLayout contentView;
+    RelativeLayout contentView;
 
     static final float END_SCALE = 0.7f;
 
@@ -57,6 +63,8 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
+        progressBar = findViewById(R.id.progress_bar);
+
         mRecyclerView = findViewById(R.id.recyclerview1);
 
         mbase = FirebaseDatabase.getInstance("https://kash-jobs-9b913-jobs-rtdb.firebaseio.com/").getReference();
@@ -74,7 +82,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
 
 
         /*Updating jobs using firebase*/
-
+        progressBar.setVisibility(View.VISIBLE);
         addJobs();
 
 
@@ -167,7 +175,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         // Create a instance of the database and get
         // its reference
         mbase
-                = FirebaseDatabase.getInstance("https://kash-jobs-a8dc9-jobs-rtdb.firebaseio.com/")
+                = FirebaseDatabase.getInstance()
                 .getReference("Jobs");
 
         mRecyclerView = findViewById(R.id.recyclerview1);
@@ -203,11 +211,13 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         });
 
         mRecyclerView.setAdapter(adapter);
+        progressBar.setVisibility(View.GONE);
     }
 
     public void postJobScreen(){
+
         /*Post job without animations*/
-        startActivity(new Intent(HomePage.this,PostJobs.class));
+        startActivity(new Intent(HomePage.this, PostJobsFirstPage.class));
 
     }
 }

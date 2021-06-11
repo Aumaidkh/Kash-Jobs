@@ -86,6 +86,11 @@
     <string name="your_password_updated_text">Your password has been updated successfully</string>
     <string name="phone_number_text">Phone Number</string>
     <string name="dl_tv_skills_required">C++, Java, Python</string>
+    <string name="experience">Experience in years</string>
+    <string name="skills">Skills Required</string>
+    <string name="job_description">Description</string>
+    <string name="employers_name">Employers Name</string>
+    <string name="employers_address">Employers Address</string>
 
 
 </resources>

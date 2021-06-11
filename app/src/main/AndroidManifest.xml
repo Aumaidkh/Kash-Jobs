@@ -12,8 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KashJobs">
-        <activity android:name=".Common.SuccessScreen"></activity>
-        <activity android:name=".User.PostJobs" />
+        <activity android:name=".User.PostJobs.PostJobsLastScreen"></activity>
+        <activity android:name=".User.PostJobs.PostJobThirdScreen" />
+        <activity android:name=".User.PostJobs.PostJobsSecondScreen" />
+        <activity android:name=".User.PostJobs.PostJobsFirstPage" />
+        <activity android:name=".Common.SuccessScreen" />
         <activity android:name=".User.HomePage" />
         <activity android:name=".Common.VerifyOtp" />
         <activity android:name=".Common.LogInSignUp.SignUpThirdPage" />

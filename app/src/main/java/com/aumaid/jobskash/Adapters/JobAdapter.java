@@ -39,6 +39,8 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.Viewholder>{
         holder.companyName.setText(model.getCompanyName());
         holder.companyAddress.setText(model.getCompanyAddress());
         holder.salary.setText(model.getSalary());
+        holder.skills.setText(model.getSkills());
+        holder.experience.setText(model.getExperience());
         holder.postedOn.setText(model.getPostedOn());
     }
 
@@ -50,7 +52,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.Viewholder>{
     public class Viewholder extends RecyclerView.ViewHolder {
 
         //Todo: Declaring Variables
-        TextView jobType, companyName, companyAddress, salary, postedOn;
+        TextView jobType, companyName, companyAddress, salary, postedOn, experience, skills;
 
         public Viewholder(@NonNull View itemView) {
             super(itemView);
@@ -60,6 +62,8 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.Viewholder>{
             companyName = itemView.findViewById(R.id.company_name);
             companyAddress = itemView.findViewById(R.id.company_address);
             salary = itemView.findViewById(R.id.salary);
+            experience = itemView.findViewById(R.id.dl_experience_tv);
+            skills = itemView.findViewById(R.id.dl_skills_tv);
             postedOn = itemView.findViewById(R.id.posted_on);
         }
     }

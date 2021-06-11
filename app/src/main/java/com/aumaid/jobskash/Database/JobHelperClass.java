@@ -6,19 +6,23 @@ public class JobHelperClass {
     String companyName;
     String companyAddress;
     String salary;
-    String email;
+    String skills;
+    String experience;
+    String contact;
     String description;
     String postedOn;
 
 
     public JobHelperClass(){}
 
-    public JobHelperClass(String jobType, String companyName, String companyAddress, String salary,String email, String description, String postedOn) {
+    public JobHelperClass(String jobType, String companyName, String companyAddress, String salary,String skills, String experience,String contact, String description, String postedOn) {
         this.jobType = jobType;
         this.companyName = companyName;
         this.companyAddress = companyAddress;
         this.salary = salary;
-        this.email = email;
+        this.contact = contact;
+        this.skills = skills;
+        this.experience = experience;
         this.description = description;
         this.postedOn = postedOn;
     }
@@ -27,12 +31,28 @@ public class JobHelperClass {
         return jobType;
     }
 
-    public String getEmail() {
-        return email;
+    public String getSkills() {
+        return skills;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setSkills(String skills) {
+        this.skills = skills;
+    }
+
+    public String getExperience() {
+        return experience;
+    }
+
+    public void setExperience(String experience) {
+        this.experience = experience;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
     }
 
     public String getDescription() {

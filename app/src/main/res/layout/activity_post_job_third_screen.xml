@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    tools:context=".User.PostJobs.PostJobThirdScreen"
+    android:padding="20dp"
+    android:orientation="vertical">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:elevation="4dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="150dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:textSize="25sp"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:textAlignment="gravity"
+        android:gravity="center_horizontal"
+        android:text="Eligibility"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_marginTop="10dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxStrokeColor="@color/black"
+        app:boxStrokeWidthFocused="2dp"
+        app:boxStrokeWidth="2dp"
+        android:hint="@string/experience"
+        app:startIconDrawable="@drawable/experience">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/experience_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"/>
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_marginTop="10dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxStrokeColor="@color/black"
+        app:boxStrokeWidthFocused="2dp"
+        app:boxStrokeWidth="2dp"
+        android:hint="@string/skills"
+        app:startIconDrawable="@drawable/skills">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/skills_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"/>
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_marginTop="20dp"
+        android:id="@+id/post_job_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
+        android:onClick="nextPostJobScreen"
+        android:text="@string/next"
+        android:padding="20dp"
+        />
+
+
+</LinearLayout>

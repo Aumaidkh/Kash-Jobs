@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.aumaid.jobskash.R;
@@ -23,6 +24,7 @@ public class SignInPage extends AppCompatActivity {
 
     /*Declaring Views*/
     TextInputEditText mUsername, mPassword;
+    ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class SignInPage extends AppCompatActivity {
         /*Creating Hooks*/
         mUsername = findViewById(R.id.sign_in_email_box);
         mPassword = findViewById(R.id.sign_in_password_box);
+        mProgressBar = findViewById(R.id.progress_bar);
     }
 
     //TODO: Un Implemented function
@@ -48,6 +51,8 @@ public class SignInPage extends AppCompatActivity {
         String _Username = mUsername.getText().toString();
         String _Password = mPassword.getText().toString();
 
+        mProgressBar.setVisibility(View.VISIBLE);
+
         /*Checking database for the username entered*/
         Query checkUser = FirebaseDatabase.getInstance().getReference("Users").orderByChild("userName").equalTo(_Username);
 
@@ -61,6 +66,9 @@ public class SignInPage extends AppCompatActivity {
                     String realPassword = snapshot.child(_Username).child("password").getValue(String.class);
                     if(realPassword.equals(_Password)){
                         /*Log in the user*/
+
+                        mProgressBar.setVisibility(View.GONE);
+
                         Toast.makeText(getApplicationContext(),"Logged in as "+_Username,Toast.LENGTH_SHORT).show();
 
 
@@ -80,11 +88,13 @@ public class SignInPage extends AppCompatActivity {
 
                     }else{
                         /*Invalid password*/
+                        mProgressBar.setVisibility(View.GONE);
                         Toast.makeText(getApplicationContext(),"Password doesn't match",Toast.LENGTH_SHORT).show();
                     }
 
                 }else{
                     //Invalid username
+                    mProgressBar.setVisibility(View.GONE);
                     Toast.makeText(getApplicationContext(),"Invalid Username",Toast.LENGTH_SHORT).show();
 
                 }
@@ -94,6 +104,7 @@ public class SignInPage extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                mProgressBar.setVisibility(View.GONE);
                 Toast.makeText(getApplicationContext(),error.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
