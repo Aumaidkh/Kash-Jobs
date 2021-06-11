@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.aumaid.jobskash.HelperClasses.InternetChecker;
 import com.aumaid.jobskash.R;
 import com.aumaid.jobskash.User.HomePage;
 import com.google.android.material.textfield.TextInputEditText;
@@ -39,14 +40,18 @@ public class SignInPage extends AppCompatActivity {
 
     //TODO: Un Implemented function
     public void signIn(View view) {
-        /*Testing Home Screen*/
-        // startActivity(new Intent(getApplicationContext(), HomePage.class));
+        /*Internet Connectivity Check*/
+        InternetChecker internetChecker = new InternetChecker();
+        if (!internetChecker.isConnected(this)) {
+            Toast.makeText(getApplicationContext(), "No internet connection detected", Toast.LENGTH_SHORT).show();
+            return;
+        }
         checkUser();
 
 
     }
 
-    public void checkUser(){
+    public void checkUser() {
         /*Getting username and password*/
         String _Username = mUsername.getText().toString();
         String _Password = mPassword.getText().toString();
@@ -61,15 +66,15 @@ public class SignInPage extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                if(snapshot.exists()){
+                if (snapshot.exists()) {
                     /*Checking database for password for the entered username*/
                     String realPassword = snapshot.child(_Username).child("password").getValue(String.class);
-                    if(realPassword.equals(_Password)){
+                    if (realPassword.equals(_Password)) {
                         /*Log in the user*/
 
                         mProgressBar.setVisibility(View.GONE);
 
-                        Toast.makeText(getApplicationContext(),"Logged in as "+_Username,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Logged in as " + _Username, Toast.LENGTH_SHORT).show();
 
 
                         /*Fetch user data*/
@@ -86,16 +91,16 @@ public class SignInPage extends AppCompatActivity {
                         /*Presend home activity*/
                         presetHomeScreen();
 
-                    }else{
+                    } else {
                         /*Invalid password*/
                         mProgressBar.setVisibility(View.GONE);
-                        Toast.makeText(getApplicationContext(),"Password doesn't match",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Password doesn't match", Toast.LENGTH_SHORT).show();
                     }
 
-                }else{
+                } else {
                     //Invalid username
                     mProgressBar.setVisibility(View.GONE);
-                    Toast.makeText(getApplicationContext(),"Invalid Username",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Invalid Username", Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -105,29 +110,29 @@ public class SignInPage extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 mProgressBar.setVisibility(View.GONE);
-                Toast.makeText(getApplicationContext(),error.getMessage(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    public boolean signUpPage(View view){
+    public boolean signUpPage(View view) {
 
         Intent mSignUpIntent = new Intent(getApplicationContext(), SignUpFirstPage.class);
 
         Pair[] pairs = new Pair[1];
-        pairs[0] = new Pair<View, String>(findViewById(R.id.welcome_sign_up_btn),"transition_signup");
+        pairs[0] = new Pair<View, String>(findViewById(R.id.welcome_sign_up_btn), "transition_signup");
 
-        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SignInPage.this,pairs);
-        startActivity(mSignUpIntent,options.toBundle());
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SignInPage.this, pairs);
+        startActivity(mSignUpIntent, options.toBundle());
         return true;
     }
 
-    public boolean fetchUserData(){
+    public boolean fetchUserData() {
         return true;
     }
 
 
-    private void presetHomeScreen(){
+    private void presetHomeScreen() {
         startActivity(new Intent(getApplicationContext(), HomePage.class));
     }
 }

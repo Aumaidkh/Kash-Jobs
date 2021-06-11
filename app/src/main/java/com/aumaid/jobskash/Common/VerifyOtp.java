@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aumaid.jobskash.Database.UserHelperClass;
+import com.aumaid.jobskash.HelperClasses.InternetChecker;
 import com.aumaid.jobskash.R;
 import com.aumaid.jobskash.User.HomePage;
 import com.chaos.view.PinView;
@@ -69,7 +70,7 @@ public class VerifyOtp extends AppCompatActivity {
     }
 
     /*Preparing Otp Screen*/
-    private void prepareOtpScreen(){
+    private void prepareOtpScreen() {
         //Retreiving data from previous Intent
         _fullname = getIntent().getStringExtra("FULL_NAME");
         _username = getIntent().getStringExtra("USER_NAME");
@@ -185,11 +186,17 @@ public class VerifyOtp extends AppCompatActivity {
 
     /*Calling Next Screen When done*/
     public void callNextScreenFromOtp(View view) {
+        /*Internet Connectivity Check*/
+        InternetChecker internetChecker = new InternetChecker();
+        if (!internetChecker.isConnected(this)) {
+            Toast.makeText(getApplicationContext(), "No internet connection detected", Toast.LENGTH_SHORT).show();
+            return;
+        }
         String _otp = pinView.getText().toString();
         verifyCode(_otp);
     }
 
-    public void saveData(){
+    public void saveData() {
         FirebaseDatabase rootNode = FirebaseDatabase.getInstance();
         DatabaseReference reference = rootNode.getReference("Users");
 

@@ -7,9 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
+import android.widget.Toast;
 
 import com.aumaid.jobskash.Common.LogInSignUp.SignInPage;
 import com.aumaid.jobskash.Common.LogInSignUp.SignUpFirstPage;
+import com.aumaid.jobskash.HelperClasses.InternetChecker;
 import com.aumaid.jobskash.R;
 
 public class WelcomeScreen extends AppCompatActivity {
@@ -22,28 +24,40 @@ public class WelcomeScreen extends AppCompatActivity {
     }
 
 
-
     public boolean signInPage(View view) {
+
+        /*Internet Connectivity Check*/
+        InternetChecker internetChecker = new InternetChecker();
+        if (!internetChecker.isConnected(this)) {
+            Toast.makeText(getApplicationContext(), "No internet connection detected", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
         Intent mSignUpIntent = new Intent(getApplicationContext(), SignInPage.class);
 
         /*Making Transition Animation*/
         Pair[] pairs = new Pair[1];
-        pairs[0] = new Pair<View, String>(findViewById(R.id.welcome_log_in_btn),"transition_login");
+        pairs[0] = new Pair<View, String>(findViewById(R.id.welcome_log_in_btn), "transition_login");
 
-        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(WelcomeScreen.this,pairs);
-        startActivity(mSignUpIntent,options.toBundle());
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(WelcomeScreen.this, pairs);
+        startActivity(mSignUpIntent, options.toBundle());
         return true;
     }
 
-    public boolean signUpPage(View view){
-
+    public boolean signUpPage(View view) {
+        /*Internet Connectivity Check*/
+        InternetChecker internetChecker = new InternetChecker();
+        if (!internetChecker.isConnected(this)) {
+            Toast.makeText(getApplicationContext(), "No internet connection detected", Toast.LENGTH_SHORT).show();
+            return false;
+        }
         Intent mSignUpIntent = new Intent(getApplicationContext(), SignUpFirstPage.class);
 
         Pair[] pairs = new Pair[1];
-        pairs[0] = new Pair<View, String>(findViewById(R.id.welcome_sign_up_btn),"transition_signup");
+        pairs[0] = new Pair<View, String>(findViewById(R.id.welcome_sign_up_btn), "transition_signup");
 
-        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(WelcomeScreen.this,pairs);
-        startActivity(mSignUpIntent,options.toBundle());
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(WelcomeScreen.this, pairs);
+        startActivity(mSignUpIntent, options.toBundle());
         return true;
     }
 }

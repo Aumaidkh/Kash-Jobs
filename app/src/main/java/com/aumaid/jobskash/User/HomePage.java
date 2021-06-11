@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -20,6 +19,7 @@ import android.widget.Toast;
 import com.aumaid.jobskash.Adapters.JobAdapter;
 import com.aumaid.jobskash.Common.LogInSignUp.SignInPage;
 import com.aumaid.jobskash.Database.JobHelperClass;
+import com.aumaid.jobskash.HelperClasses.InternetChecker;
 import com.aumaid.jobskash.R;
 import com.aumaid.jobskash.User.PostJobs.PostJobsFirstPage;
 import com.google.android.material.navigation.NavigationView;
@@ -57,7 +57,6 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
     DatabaseReference mbase;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,13 +85,12 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         addJobs();
 
 
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-       // Toast.makeText(getApplicationContext(),"OnResumeCalled", Toast.LENGTH_SHORT).show();
+        // Toast.makeText(getApplicationContext(),"OnResumeCalled", Toast.LENGTH_SHORT).show();
     }
 
 
@@ -114,6 +112,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
 
         animateDrawer();
     }
+
     private void animateDrawer() {
 
         mDrawerLayout.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
@@ -138,6 +137,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         });
 
     }
+
     @Override
     public void onBackPressed() {
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -146,14 +146,21 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
             super.onBackPressed();
         }
     }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        /*Internet Connectivity Check*/
+        InternetChecker internetChecker = new InternetChecker();
+        if (!internetChecker.isConnected(this)) {
+            Toast.makeText(getApplicationContext(), "No internet connection detected", Toast.LENGTH_SHORT).show();
+            return false;
+        }
 
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
 
             case R.id.log_out_btn:
                 FirebaseAuth.getInstance().signOut();
-                Toast.makeText(getApplicationContext(),"You have been logged out successfully",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "You have been logged out successfully", Toast.LENGTH_SHORT).show();
                 Intent mLogInIntent = new Intent(getApplicationContext(), SignInPage.class);
                 startActivity(mLogInIntent);
                 finish();
@@ -168,7 +175,14 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         return true;
     }
 
-    public void addJobs(){
+    public void addJobs() {
+
+        /*Internet Connectivity Check*/
+        InternetChecker internetChecker = new InternetChecker();
+        if (!internetChecker.isConnected(this)) {
+            Toast.makeText(getApplicationContext(), "No internet connection detected", Toast.LENGTH_SHORT).show();
+            return;
+        }
         //
 
 
@@ -185,7 +199,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         mRecyclerView.setLayoutManager(
                 new LinearLayoutManager(this));
 
-        adapter = new JobAdapter(jobModelArrayList,this);
+        adapter = new JobAdapter(jobModelArrayList, this);
 
         // It is a class provide by the FirebaseUI to make a
         // query in the database to fetch appropriate data
@@ -195,7 +209,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 jobModelArrayList.clear();//Avoid duplicate cards
 
-                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
                     JobHelperClass job = dataSnapshot.getValue(JobHelperClass.class);
                     jobModelArrayList.add(job);
@@ -214,7 +228,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         progressBar.setVisibility(View.GONE);
     }
 
-    public void postJobScreen(){
+    public void postJobScreen() {
 
         /*Post job without animations*/
         startActivity(new Intent(HomePage.this, PostJobsFirstPage.class));

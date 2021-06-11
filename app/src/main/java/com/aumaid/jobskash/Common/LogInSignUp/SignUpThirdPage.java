@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.aumaid.jobskash.Common.VerifyOtp;
+import com.aumaid.jobskash.HelperClasses.InternetChecker;
 import com.aumaid.jobskash.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.hbb20.CountryCodePicker;
@@ -43,6 +44,13 @@ public class SignUpThirdPage extends AppCompatActivity {
 
     public void callVerifyOtpScreen(View view) {
 
+        /*Internet Connectivity Check*/
+        InternetChecker internetChecker = new InternetChecker();
+        if (!internetChecker.isConnected(this)) {
+            Toast.makeText(getApplicationContext(), "No internet connection detected", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
 
         //Validating Phone Number
         if (!validatePhoneNumber()) {
@@ -50,7 +58,6 @@ public class SignUpThirdPage extends AppCompatActivity {
             //Toast.makeText(getApplicationContext(),"Invalid Phone Number",Toast.LENGTH_SHORT).show();
             return;
         }
-
 
 
         //Retreiving data from previous Intent
@@ -62,12 +69,8 @@ public class SignUpThirdPage extends AppCompatActivity {
         String _dateOfBirth = getIntent().getStringExtra("DATE_OF_BIRTH");
 
 
-
-
         String _userEnteredPhoneNumber = mPhoneNumberBox.getText().toString().trim();
         String _fullPhoneNumber = "+" + mCountryCodePicker.getFullNumber() + _userEnteredPhoneNumber;
-
-
 
 
         Intent intent = new Intent(getApplicationContext(), VerifyOtp.class);
@@ -83,12 +86,11 @@ public class SignUpThirdPage extends AppCompatActivity {
         intent.putExtra("PHONE_NUMBER", _fullPhoneNumber);
 
 
-
         //Making transitions
         Pair[] pairs = new Pair[1];
         pairs[0] = new Pair<View, String>(mNextBtn, "transition_next");
 
-        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SignUpThirdPage.this,pairs);
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SignUpThirdPage.this, pairs);
 
         startActivity(intent, options.toBundle());
 
