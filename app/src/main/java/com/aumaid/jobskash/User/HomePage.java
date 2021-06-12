@@ -34,13 +34,10 @@ import java.util.ArrayList;
 
 public class HomePage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    final String perMonth = " /Month";
-    final String postedOn = " Posted on";
 
     /*Progress bar*/
     ProgressBar progressBar;
 
-    FirebaseAuth mAuth;
     ImageView mDrawerToggleButton;
     RelativeLayout contentView;
 
@@ -66,7 +63,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
 
         mRecyclerView = findViewById(R.id.recyclerview1);
 
-        mbase = FirebaseDatabase.getInstance("https://kash-jobs-9b913-jobs-rtdb.firebaseio.com/").getReference();
+        mbase = FirebaseDatabase.getInstance().getReference("Jobs");
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
