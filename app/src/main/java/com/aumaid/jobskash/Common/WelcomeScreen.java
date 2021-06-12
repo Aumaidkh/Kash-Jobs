@@ -41,6 +41,7 @@ public class WelcomeScreen extends AppCompatActivity {
 
         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(WelcomeScreen.this, pairs);
         startActivity(mSignUpIntent, options.toBundle());
+        finish();
         return true;
     }
 
@@ -58,6 +59,7 @@ public class WelcomeScreen extends AppCompatActivity {
 
         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(WelcomeScreen.this, pairs);
         startActivity(mSignUpIntent, options.toBundle());
+        finish();
         return true;
     }
 }

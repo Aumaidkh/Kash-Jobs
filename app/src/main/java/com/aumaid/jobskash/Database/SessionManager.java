@@ -43,6 +43,8 @@ public class SessionManager {
 
     }
 
+    /*Log in sessions*/
+
     public void createLogInSession(String fullName, String userName, String email, String password, String gender, String date, String phoneNumber) {
 
         editor.putBoolean(IS_LOGGED_IN, true);
@@ -89,8 +91,8 @@ public class SessionManager {
 
         editor.putBoolean(IS_REMEMBER_ME, true);
 
-        editor.putString(KEY_USER_NAME, userName);
-        editor.putString(KEY_PASSWORD, password);
+        editor.putString(REMEMBER_ME_SESSION_KEY_USER_NAME, userName);
+        editor.putString(REMEMBER_ME_SESSION_KEY_PASSWORD, password);
 
         editor.commit();
     }

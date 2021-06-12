@@ -34,6 +34,7 @@ public class SignInPage extends AppCompatActivity {
     ProgressBar mProgressBar;
     CheckBox mRememberMe;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,21 +52,22 @@ public class SignInPage extends AppCompatActivity {
 
     }
 
-    public void checkRememberMeSession(){
+
+    public void checkRememberMeSession() {
         //TODO: Unimplemented
-        SessionManager sessionManager = new SessionManager(SignInPage.this,SessionManager.REMEMBER_ME_SESSION);
-        if(sessionManager.checkIsRememberMe()){
+        SessionManager sessionManager = new SessionManager(SignInPage.this, SessionManager.REMEMBER_ME_SESSION);
+        if (sessionManager.checkIsRememberMe()) {
             HashMap<String, String> rememberMeDetails = sessionManager.getUserDataFromRememberMeSession();
             mUsername.setText(rememberMeDetails.get(SessionManager.REMEMBER_ME_SESSION_KEY_USER_NAME));
             mPassword.setText(rememberMeDetails.get(SessionManager.REMEMBER_ME_SESSION_KEY_PASSWORD));
-          //  Log.d("MAIN",rememberMeDetails.get(SessionManager.REMEMBER_ME_SESSION_KEY_USER_NAME));
-          //  Log.d("MAIN",rememberMeDetails.get(SessionManager.REMEMBER_ME_SESSION_KEY_PASSWORD));
+            //  Log.d("MAIN",rememberMeDetails.get(SessionManager.REMEMBER_ME_SESSION_KEY_USER_NAME));
+            //  Log.d("MAIN",rememberMeDetails.get(SessionManager.REMEMBER_ME_SESSION_KEY_PASSWORD));
         }
     }
 
-    public void checkLogInSession(){
-        SessionManager sessionManager = new SessionManager(SignInPage.this,SessionManager.USER_LOGIN_SESSION);
-        if(sessionManager.checkLogIn()){
+    public void checkLogInSession() {
+        SessionManager sessionManager = new SessionManager(SignInPage.this, SessionManager.USER_LOGIN_SESSION);
+        if (sessionManager.checkLogIn()) {
             presetHomeScreen();
         }
     }
@@ -90,8 +92,8 @@ public class SignInPage extends AppCompatActivity {
 
         mProgressBar.setVisibility(View.VISIBLE);
 
-        if(mRememberMe.isEnabled()){
-            Toast.makeText(getApplicationContext(),"checkbox checked",Toast.LENGTH_SHORT).show();
+        if (mRememberMe.isChecked()) {
+            //Toast.makeText(getApplicationContext(),mRememberMe.isChecked()+"",Toast.LENGTH_SHORT).show();
             SessionManager sessionManager = new SessionManager(SignInPage.this, SessionManager.REMEMBER_ME_SESSION);
             sessionManager.createRememberMeSession(_Username, _Password);
         }
@@ -125,8 +127,8 @@ public class SignInPage extends AppCompatActivity {
                         String _PhoneNumber = snapshot.child("phoneNumber").getValue(String.class);
 
                         /*Creating session*/
-                        SessionManager sessionManager = new SessionManager(SignInPage.this,SessionManager.USER_LOGIN_SESSION);
-                        sessionManager.createLogInSession(_FullName,_Username, _Email, _Password, _Gender, _DateOfBirth, _PhoneNumber);
+                        SessionManager sessionManager = new SessionManager(SignInPage.this, SessionManager.USER_LOGIN_SESSION);
+                        sessionManager.createLogInSession(_FullName, _Username, _Email, _Password, _Gender, _DateOfBirth, _PhoneNumber);
                         /*Present home activity*/
                         presetHomeScreen();
 
