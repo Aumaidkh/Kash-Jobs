@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.aumaid.jobskash.Database.SessionManager;
 import com.aumaid.jobskash.HelperClasses.InternetChecker;
 import com.aumaid.jobskash.R;
 import com.aumaid.jobskash.User.HomePage;
@@ -87,8 +88,9 @@ public class SignInPage extends AppCompatActivity {
                         String _PhoneNumber = snapshot.child("phoneNumber").getValue(String.class);
 
                         /*Creating session*/
-
-                        /*Presend home activity*/
+                        SessionManager sessionManager = new SessionManager(SignInPage.this);
+                        sessionManager.createLogInSession(_FullName,_Username, _Email, _Password, _Gender, _DateOfBirth, _PhoneNumber);
+                        /*Present home activity*/
                         presetHomeScreen();
 
                     } else {
@@ -127,12 +129,9 @@ public class SignInPage extends AppCompatActivity {
         return true;
     }
 
-    public boolean fetchUserData() {
-        return true;
-    }
-
 
     private void presetHomeScreen() {
         startActivity(new Intent(getApplicationContext(), HomePage.class));
+        finish();
     }
 }
