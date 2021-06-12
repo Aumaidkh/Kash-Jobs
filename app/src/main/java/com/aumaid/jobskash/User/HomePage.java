@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.aumaid.jobskash.Adapters.JobAdapter;
 import com.aumaid.jobskash.Common.LogInSignUp.SignInPage;
 import com.aumaid.jobskash.Database.JobHelperClass;
+import com.aumaid.jobskash.Database.SessionManager;
 import com.aumaid.jobskash.HelperClasses.InternetChecker;
 import com.aumaid.jobskash.R;
 import com.aumaid.jobskash.User.PostJobs.PostJobsFirstPage;
@@ -157,6 +158,10 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
 
             case R.id.log_out_btn:
                 FirebaseAuth.getInstance().signOut();
+                /*LOGGING OUT SESSION*/
+                SessionManager sessionManager = new SessionManager(HomePage.this, SessionManager.USER_LOGIN_SESSION);
+                sessionManager.logOut();
+
                 Toast.makeText(getApplicationContext(), "You have been logged out successfully", Toast.LENGTH_SHORT).show();
                 Intent mLogInIntent = new Intent(getApplicationContext(), SignInPage.class);
                 startActivity(mLogInIntent);

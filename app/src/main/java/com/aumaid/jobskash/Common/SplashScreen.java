@@ -8,7 +8,9 @@ import android.os.Handler;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import com.aumaid.jobskash.Database.SessionManager;
 import com.aumaid.jobskash.R;
+import com.aumaid.jobskash.User.HomePage;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -26,15 +28,19 @@ public class SplashScreen extends AppCompatActivity {
 
         animateSplashScreen();
 
-        /*If check Here*/
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
 
                 Intent mHomeIntent;
 
-                mHomeIntent = new Intent(getApplicationContext(), WelcomeScreen.class);
-
+                /*Checking if the user is already logged in*/
+                SessionManager sessionManager = new SessionManager(SplashScreen.this, SessionManager.USER_LOGIN_SESSION);
+                if(sessionManager.checkLogIn()){
+                    mHomeIntent = new Intent(getApplicationContext(), HomePage.class);
+                }else{
+                    mHomeIntent = new Intent(getApplicationContext(), WelcomeScreen.class);
+                }
                 startActivity(mHomeIntent);
                 finish();
             }

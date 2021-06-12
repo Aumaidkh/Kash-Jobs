@@ -11,19 +11,34 @@ public class SessionManager {
     SharedPreferences.Editor editor;
     Context context;
 
+    public static final String USER_LOGIN_SESSION = "userLogInSession";
+    public static final String REMEMBER_ME_SESSION = "rememberMeSession";
+
     private static final String IS_LOGGED_IN = "LOGGED_IN";
 
-    private static String KEY_FULL_NAME = "fullName";
-    private static String KEY_USER_NAME = "userName";
-    private static String KEY_EMAIL = "email";
-    private static String KEY_PASSWORD = "password";
-    private static String KEY_GENDER = "gender";
-    private static String KEY_DATE_OF_BIRTH = "date";
-    private static String KEY_PHONE_NUMBER = "phoneNumber";
+    /*
+    * REMEMBER ME SESSION VARIABLES
+    * */
+    private static final String IS_REMEMBER_ME = "REMEMBER_ME";
+    public static String REMEMBER_ME_SESSION_KEY_USER_NAME = "userName";
+    public static String REMEMBER_ME_SESSION_KEY_PASSWORD = "password";
 
-    public SessionManager(Context _context) {
+
+    /*
+    * USER LOG IN SESSION VARIABLES
+    * */
+
+    public static String KEY_FULL_NAME = "fullName";
+    public static String KEY_USER_NAME = "userName";
+    public static String KEY_EMAIL = "email";
+    public static String KEY_PASSWORD = "password";
+    public static String KEY_GENDER = "gender";
+    public static String KEY_DATE_OF_BIRTH = "date";
+    public static String KEY_PHONE_NUMBER = "phoneNumber";
+
+    public SessionManager(Context _context, String sessionName) {
         context = _context;
-        userSession = context.getSharedPreferences("userLogInSession", Context.MODE_PRIVATE);
+        userSession = context.getSharedPreferences(sessionName, Context.MODE_PRIVATE);
         editor = userSession.edit();
 
     }
@@ -43,7 +58,7 @@ public class SessionManager {
         editor.commit();
     }
 
-    public HashMap<String, String> getUserDataFromSession() {
+    public HashMap<String, String> getUserDataFromUserLogInSession() {
         HashMap<String, String> userData = new HashMap<>();
 
         userData.put(KEY_FULL_NAME, userSession.getString(KEY_FULL_NAME, null));
@@ -64,5 +79,34 @@ public class SessionManager {
     public void logOut() {
         editor.clear();
         editor.commit();
+    }
+
+    /*
+    * Remember Me session Details
+    * */
+
+    public void createRememberMeSession(String userName, String password) {
+
+        editor.putBoolean(IS_REMEMBER_ME, true);
+
+        editor.putString(KEY_USER_NAME, userName);
+        editor.putString(KEY_PASSWORD, password);
+
+        editor.commit();
+    }
+
+    public HashMap<String, String > getUserDataFromRememberMeSession(){
+
+        HashMap<String, String > userData = new HashMap<>();
+
+        userData.put(REMEMBER_ME_SESSION_KEY_USER_NAME, null);
+        userData.put(REMEMBER_ME_SESSION_KEY_PASSWORD, null);
+
+        return userData;
+
+    }
+
+    public boolean checkIsRememberMe() {
+        return userSession.getBoolean(IS_REMEMBER_ME, false);
     }
 }
