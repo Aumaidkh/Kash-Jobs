@@ -92,5 +92,17 @@
     <string name="employers_name">Employers Name</string>
     <string name="employers_address">Employers Address</string>
 
+    <!-- Job application screen -->
+    <string name="jd_desired_candidate_profile">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+Aliquam tincidunt mauris eu risus.
+Vestibulum auctor dapibus neque.
+Nunc dignissim risus id metus.
+Cras ornare tristique elit.
+Vivamus vestibulum ntulla nec ante.
+Praesent placerat risus quis eros.
+Fusce pellentesque suscipit nibh.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>

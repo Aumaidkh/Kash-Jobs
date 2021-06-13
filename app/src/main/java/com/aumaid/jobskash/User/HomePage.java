@@ -173,6 +173,11 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
 
                 postJobScreen();
                 break;
+
+            case R.id.profile_btn:
+                /*Test button for job description screen*/
+                startActivity(new Intent(getApplicationContext(), JobApplicationPage.class));
+                break;
         }
         return true;
     }

@@ -13,4 +13,9 @@
     <!--Home Screen card view colors-->
     <color name="company_color">#242424</color>
     <color name="salary_color">#868E95</color>
+
+    <!--Job description View-->
+    <color name="job_description_relative_layout_color">#001d39</color>
+
+    <color name="heading_text_color">#0d0d0d</color>
 </resources>

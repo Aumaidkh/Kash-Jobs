@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--Making the Employer details part-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:paddingStart="10dp"
+                android:paddingTop="30dp"
+                android:paddingEnd="10dp"
+                android:background="@color/job_description_relative_layout_color">
+
+                <LinearLayout
+                    android:id="@+id/jd_linear_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true">
+
+                    <!--Employer Details Section-->
+                    <!--Concat programatically the text for this view-->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/jd_job_type_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Software Developer - C#, XML, JAVA"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        />
+
+                    <!--Experience TextView-->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/jd_experience_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="(6 months - 2 Years)"
+                        android:textColor="@color/white"
+                        android:layout_below="@id/jd_job_type_tv"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        />
+
+                    <!--Company Name textView-->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/jd_company_name_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/jd_experience_tv"
+                        android:text="Tesla Motors Pvt. Ltd."
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        android:textStyle="normal"
+                        />
+
+
+
+                </LinearLayout>
+
+                <!--Company Logo Image View-->
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="120dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="50dp"
+                    android:layout_toEndOf="@id/jd_linear_layout"
+                    android:src="@drawable/profilephoto"/>
+
+                <!--Horizontal Line-->
+                <View
+                    android:id="@+id/jd_horizontal_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#00274d"
+                    android:layout_below="@id/jd_linear_layout"
+                    android:layout_marginTop="10dp"
+                    />
+
+                <!--Un implemented space -->
+
+
+
+            </RelativeLayout>
+
+            <!--Job Description tool bar-->
+            <include layout="@layout/jd_tab_bar"/>
+
+            <FrameLayout
+                android:id="@+id/layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+            <!--Setcontent into this view programatically-->
+
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+    <Button
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentBottom="true"
+        android:text="Apply"
+        android:textAllCaps="true"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
