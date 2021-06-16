@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:transitionName="save_qualifications_transition"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_margin="10dp"
+            android:elevation="2dp"
+            android:foregroundTint="@color/white"
+            app:cardCornerRadius="5dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Preview Job"
+                android:textAlignment="textStart"
+                android:textColor="@color/heading_text_color"
+                android:textSize="30sp" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="80dp"
+                android:src="@drawable/preview_job_illustration" />
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:elevation="2dp"
+            android:foregroundTint="@color/white"
+            app:cardCornerRadius="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Company Name"
+                        android:textColor="@color/heading_text_color"
+                        android:textSize="18sp" />
+
+                    <!--Set Programatically-->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/pr_company_name_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="S.D.E"
+                        android:textColor="@color/body_text_color"
+                        android:textSize="16sp" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Company Address"
+                        android:textColor="@color/heading_text_color"
+                        android:textSize="18sp" />
+
+                    <!--Set Programatically-->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/pr_company_address_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="Nevada"
+                        android:textColor="@color/body_text_color"
+                        android:textSize="16sp" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Industry Type"
+                        android:textColor="@color/heading_text_color"
+                        android:textSize="18sp" />
+
+                    <!--Set Programatically-->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/pr_industry_type_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="S.D.E"
+                        android:textColor="@color/body_text_color"
+                        android:textSize="16sp" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Contact"
+                        android:textColor="@color/heading_text_color"
+                        android:textSize="18sp" />
+
+                    <!--Set Programatically-->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/pr_contact_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="S.D.E"
+                        android:textColor="@color/body_text_color"
+                        android:textSize="16sp" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="About"
+                        android:textColor="@color/heading_text_color"
+                        android:textSize="18sp" />
+
+                    <!--Set Programatically-->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/pr_company_about_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="S.D.E"
+                        android:textColor="@color/body_text_color"
+                        android:textSize="16sp" />
+
+
+                </LinearLayout>
+
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:backgroundTint="@color/white"
+                    android:elevation="6dp"
+                    android:onClick="edit"
+                    android:text="Edit"
+                    android:tag="1"
+                    android:textAllCaps="false"
+                    android:textColor="@color/start_color"
+                    app:cornerRadius="10dp"
+                    app:strokeColor="@color/home_screen_bg_color" />
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:elevation="2dp"
+            android:foregroundTint="@color/white"
+            app:cardCornerRadius="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Job Title"
+                        android:textColor="@color/heading_text_color"
+                        android:textSize="18sp" />
+
+                    <!--Set Programatically-->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/pr_job_title_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="S.D.E"
+                        android:textColor="@color/body_text_color"
+                        android:textSize="16sp" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Job Type"
+                        android:textColor="@color/heading_text_color"
+                        android:textSize="18sp" />
+
+                    <!--Set Programatically-->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/pr_job_type_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="Nevada"
+                        android:textColor="@color/body_text_color"
+                        android:textSize="16sp" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Number of Hires"
+                        android:textColor="@color/heading_text_color"
+                        android:textSize="18sp" />
+
+                    <!--Set Programatically-->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/pr_number_of_hires_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="S.D.E"
+                        android:textColor="@color/body_text_color"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:backgroundTint="@color/white"
+                    android:elevation="6dp"
+                    android:onClick="edit"
+                    android:text="Edit"
+                    android:tag="2"
+                    android:textAllCaps="false"
+                    android:textColor="@color/start_color"
+                    app:cornerRadius="10dp"
+                    app:strokeColor="@color/home_screen_bg_color" />
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:elevation="2dp"
+            android:foregroundTint="@color/white"
+            app:cardCornerRadius="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Salary"
+                        android:textColor="@color/heading_text_color"
+                        android:textSize="18sp" />
+
+                    <!--Set Programatically-->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/pr_salary_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="S.D.E"
+                        android:textColor="@color/body_text_color"
+                        android:textSize="16sp" />
+
+
+                </LinearLayout>
+
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:backgroundTint="@color/white"
+                    android:elevation="6dp"
+                    android:onClick="edit"
+                    android:text="Edit"
+                    android:tag="3"
+                    android:textAllCaps="false"
+                    android:textColor="@color/start_color"
+                    app:cornerRadius="10dp"
+                    app:strokeColor="@color/home_screen_bg_color" />
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:elevation="2dp"
+            android:foregroundTint="@color/white"
+            app:cardCornerRadius="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Skills"
+                        android:textColor="@color/heading_text_color"
+                        android:textSize="18sp" />
+
+                    <!--Set Programatically-->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/pr_skills_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="S.D.E"
+                        android:textColor="@color/body_text_color"
+                        android:textSize="16sp" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Responsibilities"
+                        android:textColor="@color/heading_text_color"
+                        android:textSize="18sp" />
+
+                    <!--Set Programatically-->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/pr_responsibilities_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="S.D.E"
+                        android:textColor="@color/body_text_color"
+                        android:textSize="16sp" />
+
+
+                </LinearLayout>
+
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:backgroundTint="@color/white"
+                    android:elevation="6dp"
+                    android:onClick="edit"
+                    android:text="Edit"
+                    android:transitionName="edit_job_description_transitions"
+                    android:tag="4"
+                    android:textAllCaps="false"
+                    android:textColor="@color/start_color"
+                    app:cornerRadius="10dp"
+                    app:strokeColor="@color/home_screen_bg_color" />
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:elevation="2dp"
+            android:foregroundTint="@color/white"
+            app:cardCornerRadius="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Experience"
+                        android:textColor="@color/heading_text_color"
+                        android:textSize="18sp" />
+
+                    <!--Set Programatically-->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/experience_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="S.D.E"
+                        android:textColor="@color/body_text_color"
+                        android:textSize="16sp" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Minimum Qualifications"
+                        android:textColor="@color/heading_text_color"
+                        android:textSize="18sp" />
+
+                    <!--Set Programatically-->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/pr_minimum_qualification_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="S.D.E"
+                        android:textColor="@color/body_text_color"
+                        android:textSize="16sp" />
+
+                    <!--Post Button-->
+
+
+                </LinearLayout>
+
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:backgroundTint="@color/white"
+                    android:elevation="6dp"
+                    android:onClick="edit"
+                    android:transitionName="edit_qualifications_transition"
+                    android:text="Edit"
+                    android:tag="5"
+                    android:textAllCaps="false"
+                    android:textColor="@color/start_color"
+                    app:cornerRadius="10dp"
+                    app:strokeColor="@color/home_screen_bg_color" />
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_margin="10dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/text_box_color"
+            android:onClick="postJob"
+            android:padding="15dp"
+            android:text="Post Job"
+            android:transitionName="post_job_transition"
+            app:cornerRadius="25dp" />
+
+    </LinearLayout>
+
+</ScrollView>

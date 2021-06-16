@@ -35,6 +35,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.Viewholder>{
     @Override
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
         JobHelperClass model = JobArrayList.get(position);
+        holder.jobTitle.setText(model.getJobTitle());
         holder.jobType.setText(model.getJobType());
         holder.companyName.setText(model.getCompanyName());
         holder.companyAddress.setText(model.getCompanyAddress());
@@ -42,6 +43,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.Viewholder>{
         holder.skills.setText(model.getSkills());
         holder.experience.setText(model.getExperience());
         holder.postedOn.setText(model.getPostedOn());
+        holder.hires.setText(model.getNumberOfHires());
     }
 
     @Override
@@ -52,17 +54,19 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.Viewholder>{
     public class Viewholder extends RecyclerView.ViewHolder {
 
         //Todo: Declaring Variables
-        TextView jobType, companyName, companyAddress, salary, postedOn, experience, skills;
+        TextView jobTitle, jobType, companyName, companyAddress, salary, postedOn, experience, skills, hires;
 
         public Viewholder(@NonNull View itemView) {
             super(itemView);
 
             //TODO: Creating hooks
-            jobType = itemView.findViewById(R.id.job_type);
+            jobTitle = itemView.findViewById(R.id.job_title);
+            jobType = itemView.findViewById(R.id.dl_job_type_tv);
             companyName = itemView.findViewById(R.id.company_name);
             companyAddress = itemView.findViewById(R.id.company_address);
             salary = itemView.findViewById(R.id.salary);
             experience = itemView.findViewById(R.id.dl_experience_tv);
+            hires = itemView.findViewById(R.id.dl_number_of_hires);
             skills = itemView.findViewById(R.id.dl_skills_tv);
             postedOn = itemView.findViewById(R.id.posted_on);
         }

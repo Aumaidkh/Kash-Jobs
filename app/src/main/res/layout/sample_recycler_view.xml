@@ -3,14 +3,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="250dp">
+    android:layout_height="250dp"
+    android:background="@color/white">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="5dp"
         android:elevation="5dp"
-        android:background="@color/white"
+        android:foregroundTint="@color/white"
         app:cardCornerRadius="4dp"
         >
 
@@ -30,12 +31,12 @@
                 android:layout_margin="10dp">
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/job_type"
+                    android:id="@+id/job_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/open_sans_bold"
                     android:textSize="20sp"
-                    android:textColor="@color/company_color"
+                    android:textColor="@color/heading_text_color"
                     android:layout_marginStart="10dp"
                     android:text="@string/job_type"
                     />
@@ -44,25 +45,38 @@
                     android:id="@+id/company_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_marginStart="10dp"
                     android:textSize="16sp"
-                    android:textColor="@color/company_color"
+                    android:textColor="@color/body_text_color"
                     android:fontFamily="@font/noto_sans"
                     android:text="@string/company_name" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/company_address"
-                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
                     android:drawableStart="@drawable/location_small"
                     android:drawablePadding="10dp"
-                    android:layout_marginStart="10dp"
-                    android:textColor="@color/company_color"
-                    android:textSize="12sp"
                     android:fontFamily="@font/noto_sans"
-                    android:text="@string/company_address"/>
+                    android:text="@string/company_address"
+                    android:textColor="@color/company_color"
+                    android:textSize="14sp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/dl_job_type_tv"
+                    android:drawableStart="@drawable/job_type"
+                    android:drawablePadding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/open_sans"
+                    android:textColor="@color/salary_color"
+                    android:textSize="14sp"
+                    android:text="Job - Type"
+                    app:fontFamily="@font/open_sans" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/dl_experience_tv"
@@ -70,11 +84,11 @@
                     android:drawablePadding="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginStart="10dp"
                     android:fontFamily="@font/open_sans"
                     android:textColor="@color/salary_color"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     android:text="1 - 4 years"
                     app:fontFamily="@font/open_sans" />
 
@@ -84,11 +98,25 @@
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/skills_small"
                     android:drawablePadding="10dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginStart="10dp"
                     android:fontFamily="@font/open_sans"
                     android:textColor="@color/salary_color"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
+                    android:text="@string/dl_tv_skills_required"
+                    app:fontFamily="@font/open_sans" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/dl_number_of_hires"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/hires_icon"
+                    android:drawablePadding="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/open_sans"
+                    android:textColor="@color/salary_color"
+                    android:textSize="14sp"
                     android:text="@string/dl_tv_skills_required"
                     app:fontFamily="@font/open_sans" />
 
@@ -101,9 +129,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:fontFamily="@font/open_sans"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="5dp"
                     android:textColor="@color/salary_color"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     android:text="@string/salary"
                     app:fontFamily="@font/open_sans" />
 
@@ -129,7 +157,7 @@
 
 
 
-                <com.google.android.material.textview.MaterialTextView
+                <!--<com.google.android.material.textview.MaterialTextView
                     android:id="@+id/recycler_view_apply_now_btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -139,7 +167,7 @@
                     android:drawableTint="@color/start_color"
                     android:textColor="@color/company_color"
                     android:fontFamily="@font/noto_sans"
-                    android:text="Apply Now" />
+                    android:text="Apply Now" />-->
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/verified_tag"

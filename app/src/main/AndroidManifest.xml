@@ -12,9 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KashJobs">
-        <activity android:name=".User.JobApplicationPage"></activity>
+        <activity android:name=".User.PostJobs.PreviewJob" />
+        <activity android:name=".User.PostJobs.Qualifications" />
+        <activity android:name=".User.PostJobs.JobDescription" />
+        <activity android:name=".User.PostJobs.SalaryDetails" />
+        <activity android:name=".User.PostJobs.JobDetails" />
+        <activity android:name=".User.PostJobs.CompanyDetails" />
+        <activity android:name=".User.JobApplicationPage" />
         <activity android:name=".User.PostJobs.PostJobsLastScreen" />
-        <activity android:name=".User.PostJobs.PostJobThirdScreen" />
+        <activity android:name=".User.PostJobs.PostJobsThirdScreen" />
         <activity android:name=".User.PostJobs.PostJobsSecondScreen" />
         <activity android:name=".User.PostJobs.PostJobsFirstPage" />
         <activity android:name=".Common.SuccessScreen" />

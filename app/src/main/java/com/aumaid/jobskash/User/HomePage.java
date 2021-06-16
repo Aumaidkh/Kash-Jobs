@@ -18,11 +18,12 @@ import android.widget.Toast;
 
 import com.aumaid.jobskash.Adapters.JobAdapter;
 import com.aumaid.jobskash.Common.LogInSignUp.SignInPage;
+import com.aumaid.jobskash.Common.SuccessScreen;
 import com.aumaid.jobskash.Database.JobHelperClass;
 import com.aumaid.jobskash.Database.SessionManager;
 import com.aumaid.jobskash.HelperClasses.InternetChecker;
 import com.aumaid.jobskash.R;
-import com.aumaid.jobskash.User.PostJobs.PostJobsFirstPage;
+import com.aumaid.jobskash.User.PostJobs.CompanyDetails;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -178,6 +179,11 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                 /*Test button for job description screen*/
                 startActivity(new Intent(getApplicationContext(), JobApplicationPage.class));
                 break;
+
+            case R.id.share_btn:
+                /*Test button for new post job features*/
+                break;
+
         }
         return true;
     }
@@ -197,7 +203,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         // its reference
         mbase
                 = FirebaseDatabase.getInstance()
-                .getReference("Jobs");
+                .getReference("NewJobs");
 
         mRecyclerView = findViewById(R.id.recyclerview1);
 
@@ -238,7 +244,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
     public void postJobScreen() {
 
         /*Post job without animations*/
-        startActivity(new Intent(HomePage.this, PostJobsFirstPage.class));
+        startActivity(new Intent(HomePage.this, CompanyDetails.class));
 
     }
 }

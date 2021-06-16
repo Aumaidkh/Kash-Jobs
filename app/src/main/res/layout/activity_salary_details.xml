@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:transitionName="save_job_details_transition"
+    android:orientation="vertical"
+
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:layout_margin="10dp"
+            android:elevation="2dp"
+            android:foregroundTint="@color/white"
+            app:cardCornerRadius="5dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Salary Details"
+                android:textAlignment="textStart"
+                android:textColor="@color/heading_text_color"
+                android:textSize="30sp" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="80dp"
+                android:src="@drawable/wallet_illustration" />
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:elevation="2dp"
+            android:foregroundTint="@color/white"
+            app:cardCornerRadius="5dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <Spinner
+                    android:id="@+id/salary_range_spinner"
+                    style="@style/Widget.AppCompat.Spinner.DropDown"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/black_rectangle" />
+
+                <!--From salary Box-->
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="20dp"
+                    android:focusable="true"
+                    android:hint="Eg 6000"
+                    app:boxStrokeColor="@color/text_box_color"
+                    app:hintTextColor="@color/status_bar_color">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/pj_from_salary_box"
+                        android:inputType="number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!--to Text View-->
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/to_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:elevation="4dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="to"
+                    android:textColor="@color/heading_text_color"
+                    android:textSize="20sp" />
+                <!--to salary Box-->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/pj_to_salary_ip_box"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="10dp"
+                    android:focusable="true"
+                    android:hint="Eg 8000"
+                    app:boxStrokeColor="@color/text_box_color"
+                    app:hintTextColor="@color/status_bar_color">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/pj_to_salary_box"
+                        android:layout_width="match_parent"
+                        android:inputType="number"
+                        android:layout_height="wrap_content" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!--Per month/ week selector-->
+                <Spinner
+                    android:id="@+id/cycle_spinner"
+                    style="@style/Widget.AppCompat.Spinner.DropDown"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/black_rectangle" />
+
+                <!--Next Button-->
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:backgroundTint="@color/text_box_color"
+                    android:onClick="nextPage"
+                    android:padding="15dp"
+                    android:transitionName="save_salary_details_transition"
+                    android:text="Save and Continue"
+                    app:cornerRadius="5dp" />
+
+                <!--Back Button-->
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="@color/white"
+                    android:padding="15dp"
+                    android:text="Back"
+                    app:strokeColor="@color/body_text_color"
+                    app:strokeWidth="1dp"
+                    android:textColor="@color/black"
+                    app:cornerRadius="5dp" />
+
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+</ScrollView>
