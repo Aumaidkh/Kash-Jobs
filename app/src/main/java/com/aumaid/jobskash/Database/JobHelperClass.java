@@ -1,14 +1,9 @@
 package com.aumaid.jobskash.Database;
 
-import android.os.Build;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-import androidx.annotation.RequiresApi;
-
-import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
-
-public class JobHelperClass {
+public class JobHelperClass implements Parcelable {
 
     private String companyName;
     private String companyAddress;
@@ -46,6 +41,35 @@ public class JobHelperClass {
 
 
     }
+
+    protected JobHelperClass(Parcel in) {
+        companyName = in.readString();
+        companyAddress = in.readString();
+        industryType = in.readString();
+        email = in.readString();
+        aboutCompany = in.readString();
+        jobTitle = in.readString();
+        jobType = in.readString();
+        numberOfHires = in.readString();
+        salary = in.readString();
+        skills = in.readString();
+        responsibilities = in.readString();
+        experience = in.readString();
+        qualifications = in.readString();
+        postedOn = in.readString();
+    }
+
+    public static final Creator<JobHelperClass> CREATOR = new Creator<JobHelperClass>() {
+        @Override
+        public JobHelperClass createFromParcel(Parcel in) {
+            return new JobHelperClass(in);
+        }
+
+        @Override
+        public JobHelperClass[] newArray(int size) {
+            return new JobHelperClass[size];
+        }
+    };
 
     public String getPostedOn() {
         return postedOn;
@@ -157,5 +181,28 @@ public class JobHelperClass {
 
     public void setQualifications(String qualifications) {
         this.qualifications = qualifications;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(companyName);
+        dest.writeString(companyAddress);
+        dest.writeString(industryType);
+        dest.writeString(email);
+        dest.writeString(aboutCompany);
+        dest.writeString(jobTitle);
+        dest.writeString(jobType);
+        dest.writeString(numberOfHires);
+        dest.writeString(salary);
+        dest.writeString(skills);
+        dest.writeString(responsibilities);
+        dest.writeString(experience);
+        dest.writeString(qualifications);
+        dest.writeString(postedOn);
     }
 }

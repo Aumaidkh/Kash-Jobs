@@ -51,6 +51,14 @@ public class JobDescriptionFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //            mSkills.setText(job.getSkills());
+//            mSalary.setText(job.getSalary());
+//            mAboutCompany.setText(job.getAboutCompany());
+//            mEmploymentType.setText(job.getJobType());
+//            mIndustryType.setText(job.getIndustryType());
+//            mQualifications.setText(job.getQualifications());
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);

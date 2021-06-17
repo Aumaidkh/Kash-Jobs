@@ -9,6 +9,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.util.Log;
+import android.util.Pair;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -22,6 +25,7 @@ import com.aumaid.jobskash.Common.SuccessScreen;
 import com.aumaid.jobskash.Database.JobHelperClass;
 import com.aumaid.jobskash.Database.SessionManager;
 import com.aumaid.jobskash.HelperClasses.InternetChecker;
+import com.aumaid.jobskash.Interfaces.RecyclerViewItemClickListener;
 import com.aumaid.jobskash.R;
 import com.aumaid.jobskash.User.PostJobs.CompanyDetails;
 import com.google.android.material.navigation.NavigationView;
@@ -32,9 +36,27 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class HomePage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+import static android.content.ContentValues.TAG;
+import static com.aumaid.jobskash.HelperClasses.AVariables.ABOUT_EMPLOYER;
+import static com.aumaid.jobskash.HelperClasses.AVariables.CONTACT;
+import static com.aumaid.jobskash.HelperClasses.AVariables.CYCLE_SELECTOR;
+import static com.aumaid.jobskash.HelperClasses.AVariables.EMPLOYERS_ADDRESS;
+import static com.aumaid.jobskash.HelperClasses.AVariables.EMPLOYERS_NAME;
+import static com.aumaid.jobskash.HelperClasses.AVariables.EXPERIENCE;
+import static com.aumaid.jobskash.HelperClasses.AVariables.HIRES_REQUIRED;
+import static com.aumaid.jobskash.HelperClasses.AVariables.INDUSTRY_TYPE;
+import static com.aumaid.jobskash.HelperClasses.AVariables.JOB_DESCRIPTION;
+import static com.aumaid.jobskash.HelperClasses.AVariables.JOB_TITLE;
+import static com.aumaid.jobskash.HelperClasses.AVariables.JOB_TYPE;
+import static com.aumaid.jobskash.HelperClasses.AVariables.QUALIFICATIONS;
+import static com.aumaid.jobskash.HelperClasses.AVariables.RANGE_SELECTOR;
+import static com.aumaid.jobskash.HelperClasses.AVariables.SALARY;
+import static com.aumaid.jobskash.HelperClasses.AVariables.SKILL;
+
+public class HomePage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, RecyclerViewItemClickListener {
 
 
     /*Progress bar*/
@@ -65,6 +87,8 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
 
         mRecyclerView = findViewById(R.id.recyclerview1);
 
+        /*adding onclick listener for recyclerview*/
+
         mbase = FirebaseDatabase.getInstance().getReference("Jobs");
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -84,12 +108,6 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         addJobs();
 
 
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        // Toast.makeText(getApplicationContext(),"OnResumeCalled", Toast.LENGTH_SHORT).show();
     }
 
 
@@ -212,7 +230,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         mRecyclerView.setLayoutManager(
                 new LinearLayoutManager(this));
 
-        adapter = new JobAdapter(jobModelArrayList, this);
+        adapter = new JobAdapter(jobModelArrayList, this,this);
 
         // It is a class provide by the FirebaseUI to make a
         // query in the database to fetch appropriate data
@@ -246,5 +264,13 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         /*Post job without animations*/
         startActivity(new Intent(HomePage.this, CompanyDetails.class));
 
+    }
+
+    @Override
+    public void onRecyclerViewItemCLickListener(int position) {
+        Intent intent = new Intent(getApplicationContext(),JobApplicationPage.class);
+        JobHelperClass job = jobModelArrayList.get(position);
+        intent.putExtra("JOB",job);
+        startActivity(intent);
     }
 }

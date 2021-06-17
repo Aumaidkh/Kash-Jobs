@@ -4,131 +4,477 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ScrollView
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:id="@+id/scroll_view"
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="270dp"
+        android:background="@drawable/gradient_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/jap_back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:padding="10dp"
+            android:src="@drawable/back"
+            app:tint="@color/white" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/jap_back_btn"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="Job Details"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_centerVertical="true"
+            android:background="@color/start_color"
+            android:paddingStart="15dp">
+
+
+            <TextView
+                android:id="@+id/jap_job_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Software Developer"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/jap_company_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/jap_job_title"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Company Name"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/jap_company_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/jap_company_name"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                android:drawableStart="@drawable/location_small"
+                android:drawableTint="@color/white"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Address"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/jap_posted_on"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/jap_company_address"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="4dp"
+                android:drawableStart="@drawable/timer_small"
+                android:drawableTint="@color/white"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Posted On"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/jap_description_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="50dp"
+            android:onClick="onClick"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="Job Details"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/jap_about_company_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="10dp"
+            android:onClick="onClick"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="About Company"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/jap_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        app:layout_constraintBottom_toTopOf="@id/materialButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:orientation="vertical">
 
-            <!--Making the Employer details part-->
-            <RelativeLayout
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:paddingStart="10dp"
-                android:paddingTop="30dp"
-                android:paddingEnd="10dp"
-                android:background="@color/job_description_relative_layout_color">
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:foregroundTint="@color/white"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="4dp">
 
                 <LinearLayout
-                    android:id="@+id/jd_linear_layout"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_centerVertical="true">
+                    android:layout_margin="8dp"
+                    android:orientation="vertical">
 
-                    <!--Employer Details Section-->
-                    <!--Concat programatically the text for this view-->
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/jd_job_type_tv"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Software Developer - C#, XML, JAVA"
-                        android:textColor="@color/white"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        />
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="10dp"
+                        android:elevation="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Job Highlights"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
-                    <!--Experience TextView-->
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/jd_experience_tv"
+                    <TextView
+                        android:id="@+id/jap_experience"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="(6 months - 2 Years)"
-                        android:textColor="@color/white"
-                        android:layout_below="@id/jd_job_type_tv"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        />
+                        android:drawableStart="@drawable/experience_small"
+                        android:drawablePadding="4dp"
+                        android:elevation="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Experience"
+                        android:textColor="@color/salary_color"
+                        android:textSize="12sp" />
 
-                    <!--Company Name textView-->
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/jd_company_name_tv"
+                    <TextView
+                        android:id="@+id/jap_vacancies"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/jd_experience_tv"
-                        android:text="Tesla Motors Pvt. Ltd."
-                        android:textColor="@color/white"
-                        android:textSize="12sp"
-                        android:textStyle="normal"
-                        />
+                        android:layout_marginTop="5dp"
+                        android:drawableStart="@drawable/hires_icon"
+                        android:drawablePadding="4dp"
+                        android:elevation="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Vacancies"
+                        android:textColor="@color/salary_color"
+                        android:textSize="12sp" />
 
+                    <TextView
+                        android:id="@+id/jap_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:drawableStart="@drawable/location_small"
+                        android:drawablePadding="4dp"
+                        android:elevation="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Address"
+                        android:textColor="@color/salary_color"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/jap_salary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:drawableStart="@drawable/wallet_small"
+                        android:drawablePadding="4dp"
+                        android:elevation="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Salary"
+                        android:textColor="@color/salary_color"
+                        android:textSize="12sp" />
+
+
+                    <TextView
+                        android:id="@+id/jap_skills"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:drawableStart="@drawable/skills_small"
+                        android:drawablePadding="4dp"
+                        android:elevation="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Skills"
+                        android:textColor="@color/salary_color"
+                        android:textSize="12sp" />
 
 
                 </LinearLayout>
 
-                <!--Company Logo Image View-->
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="120dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="50dp"
-                    android:layout_toEndOf="@id/jd_linear_layout"
-                    android:src="@drawable/profilephoto"/>
 
-                <!--Horizontal Line-->
-                <View
-                    android:id="@+id/jd_horizontal_line"
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="#00274d"
-                    android:layout_below="@id/jd_linear_layout"
-                    android:layout_marginTop="10dp"
-                    />
+            </androidx.cardview.widget.CardView>
 
-                <!--Un implemented space -->
-
-
-
-            </RelativeLayout>
-
-            <!--Job Description tool bar-->
-            <include layout="@layout/jd_tab_bar"/>
-
-            <FrameLayout
-                android:id="@+id/layout"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                />
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:foregroundTint="@color/white"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="4dp">
 
-            <!--Setcontent into this view programatically-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:orientation="vertical">
 
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:elevation="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Job Description"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:elevation="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Required Candidate's Responsibilities"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/jap_job_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="4dp"
+                        android:elevation="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Experience"
+                        android:textColor="@color/body_text_color"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:elevation="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Industry Type"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/jap_industry_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:elevation="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Experience"
+                        android:textColor="@color/body_text_color"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:elevation="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Role"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/jap_role_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:elevation="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Experience"
+                        android:textColor="@color/body_text_color"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:elevation="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Employment Type"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/jap_employment_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:elevation="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Experience"
+                        android:textColor="@color/body_text_color"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:elevation="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Education"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/jap_education"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:elevation="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Experience"
+                        android:textColor="@color/body_text_color"
+                        android:textSize="12sp" />
+
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:foregroundTint="@color/white"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="10dp"
+                        android:elevation="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="About Company"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/jap_company"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="4dp"
+                        android:elevation="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:textColor="@color/body_text_color"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/jap_company_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:drawablePadding="4dp"
+                        android:elevation="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:textColor="@color/body_text_color"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/jap_about_company"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:drawablePadding="4dp"
+                        android:elevation="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:textColor="@color/body_text_color"
+                        android:textSize="12sp" />
+
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
 
 
         </LinearLayout>
 
 
     </ScrollView>
-    <Button
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <com.google.android.material.button.MaterialButton
+
+        android:id="@+id/materialButton"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_alignParentBottom="true"
-        android:text="Apply"
-        android:textAllCaps="true"
-        />
+        android:layout_height="wrap_content"
+        android:elevation="5dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:padding="20dp"
+        android:text="Apply Now"
+        android:onClick="apply"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:cornerRadius="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

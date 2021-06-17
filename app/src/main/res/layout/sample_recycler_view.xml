@@ -52,7 +52,7 @@
                     android:text="@string/company_name" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/company_address"
+                    android:id="@+id/fg_company_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
