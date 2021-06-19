@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.aumaid.jobskash.Database.JobHelperClass;
+import com.aumaid.jobskash.Models.JobModel;
 import com.aumaid.jobskash.Interfaces.RecyclerViewItemClickListener;
 import com.aumaid.jobskash.R;
 
@@ -18,10 +18,10 @@ import java.util.ArrayList;
 public class JobAdapter extends RecyclerView.Adapter<JobAdapter.Viewholder>{
 
     private RecyclerViewItemClickListener onRecyclerViewItemClickListener;
-    ArrayList<JobHelperClass> JobArrayList;
+    ArrayList<JobModel> JobArrayList;
     Context context;
 
-    public JobAdapter(ArrayList<JobHelperClass> JobArrayList, Context context, RecyclerViewItemClickListener onRecyclerViewItemClickListener) {
+    public JobAdapter(ArrayList<JobModel> JobArrayList, Context context, RecyclerViewItemClickListener onRecyclerViewItemClickListener) {
         this.JobArrayList = JobArrayList;
         this.context = context;
         this.onRecyclerViewItemClickListener = onRecyclerViewItemClickListener;
@@ -37,7 +37,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.Viewholder>{
 
     @Override
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
-        JobHelperClass model = JobArrayList.get(position);
+        JobModel model = JobArrayList.get(position);
         holder.jobTitle.setText(model.getJobTitle());
         holder.jobType.setText(model.getJobType());
         holder.companyName.setText(model.getCompanyName());

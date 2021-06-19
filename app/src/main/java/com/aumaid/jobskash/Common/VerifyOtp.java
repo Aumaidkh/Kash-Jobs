@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.aumaid.jobskash.Database.UserHelperClass;
+import com.aumaid.jobskash.Models.UserModel;
 import com.aumaid.jobskash.HelperClasses.InternetChecker;
 import com.aumaid.jobskash.R;
 import com.aumaid.jobskash.User.HomePage;
@@ -200,7 +200,7 @@ public class VerifyOtp extends AppCompatActivity {
         FirebaseDatabase rootNode = FirebaseDatabase.getInstance();
         DatabaseReference reference = rootNode.getReference("Users");
 
-        UserHelperClass user = new UserHelperClass(_fullname, _username, _email, _password, _gender, _dateOfBirth, _phoneNumber);
+        UserModel user = new UserModel(_fullname, _username, _email, _password, _gender, _dateOfBirth, _phoneNumber);
         reference.child(_username).setValue(user);
     }
 }

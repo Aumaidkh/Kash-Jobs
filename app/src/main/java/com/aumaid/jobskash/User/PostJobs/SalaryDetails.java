@@ -123,7 +123,7 @@ public class SalaryDetails extends AppCompatActivity implements AdapterView.OnIt
         String _fromSalary = mFromSalary.getText().toString().trim();
         String _toSalary = mToSalary.getText().toString().trim();
         if(!_toSalary.isEmpty()){
-            salary = range.concat("ing")+"Rs. "+_fromSalary +" - "+"Rs. "+ _toSalary+" "+cycle;
+            salary = range+"Rs. "+_fromSalary +" - "+"Rs. "+ _toSalary+" "+cycle;
         }else{
             salary = range + "Rs. "+_fromSalary+" "+cycle;
         }

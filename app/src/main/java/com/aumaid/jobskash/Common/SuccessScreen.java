@@ -58,12 +58,13 @@ public class SuccessScreen extends AppCompatActivity {
         mCongratsHeading.setText("Job has been posted.");
         mSignButton.setVisibility(View.INVISIBLE);
 
-        mSuccessIcon.animate().scaleXBy(1.5F).scaleYBy(1.5F).alphaBy(1.0F).setDuration(500);
+        mSuccessIcon.animate().rotationBy(360F).scaleXBy(1.5F).scaleYBy(1.5F).alphaBy(1.0F).setDuration(500);
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 startActivity(new Intent(getApplicationContext(), HomePage.class));
+                finish();
             }
         },3000);
     }

@@ -1,6 +1,6 @@
-package com.aumaid.jobskash.Database;
+package com.aumaid.jobskash.Models;
 
-public class UserHelperClass {
+public class UserModel {
 
     String fullName;
     String userName;
@@ -11,9 +11,9 @@ public class UserHelperClass {
     String phoneNumber;
 
     //For Firebase
-    public UserHelperClass(){}
+    public UserModel(){}
 
-    public UserHelperClass(String fullName, String userName, String email, String password, String gender, String date, String phoneNumber) {
+    public UserModel(String fullName, String userName, String email, String password, String gender, String date, String phoneNumber) {
         this.fullName = fullName;
         this.userName = userName;
         this.email = email;

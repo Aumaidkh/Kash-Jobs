@@ -18,11 +18,7 @@
         <activity android:name=".User.PostJobs.SalaryDetails" />
         <activity android:name=".User.PostJobs.JobDetails" />
         <activity android:name=".User.PostJobs.CompanyDetails" />
-        <activity android:name=".User.JobApplicationPage" />
-        <activity android:name=".User.PostJobs.PostJobsLastScreen" />
-        <activity android:name=".User.PostJobs.PostJobsThirdScreen" />
-        <activity android:name=".User.PostJobs.PostJobsSecondScreen" />
-        <activity android:name=".User.PostJobs.PostJobsFirstPage" />
+        <activity android:name=".User.JobApplicationPage" android:theme="@style/Theme.KashJobs.JobsApplication"/>
         <activity android:name=".Common.SuccessScreen" />
         <activity android:name=".User.HomePage" />
         <activity android:name=".Common.VerifyOtp" />

@@ -1,19 +1,21 @@
 package com.aumaid.jobskash.User.PostJobs;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aumaid.jobskash.Common.SuccessScreen;
-import com.aumaid.jobskash.Database.JobHelperClass;
+import com.aumaid.jobskash.Database.DAOJob;
+import com.aumaid.jobskash.Models.JobModel;
 import com.aumaid.jobskash.R;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -49,10 +51,10 @@ public class PreviewJob extends AppCompatActivity {
             mExperience,
             mQualifications;
 
-    Button mEditButton;
+
 
     /*Declaring Global Variables*/
-    String _CompanyName,
+    private String _CompanyName,
             _CompanyAddress,
             _IndustryType,
             _Contact,
@@ -65,6 +67,7 @@ public class PreviewJob extends AppCompatActivity {
             _Responsibilities,
             _Experience,
             _Qualifications;
+    private DAOJob daoJob;
 
 
     @Override
@@ -94,6 +97,7 @@ public class PreviewJob extends AppCompatActivity {
         receiveDataFromPreviousIntent();
 
         showDataOnTextViews();
+        daoJob = new DAOJob();
     }
 
     private void receiveDataFromPreviousIntent() {
@@ -143,7 +147,7 @@ public class PreviewJob extends AppCompatActivity {
         /*Creating Job Object*/
         Date currentTime = Calendar.getInstance().getTime();
 
-        JobHelperClass job = new JobHelperClass(_CompanyName,
+        JobModel job = new JobModel(_CompanyName,
                 _CompanyAddress,
                 _IndustryType,
                 _Contact,
@@ -160,17 +164,23 @@ public class PreviewJob extends AppCompatActivity {
 
 
         /*Connecting to firebase and saving Job in it*/
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("NewJobs");
-        reference.child(_CompanyName).setValue(job);
+        daoJob.add(job).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toast.makeText(getApplicationContext(), "Record Inserted", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
         /*Presenting success Screen*/
         Intent intent = new Intent(getApplicationContext(), SuccessScreen.class);
         intent.putExtra("Mode", 1);
         startActivity(intent);
-//        Pair[] pair = new Pair[1];
-//        pair[0] = new Pair(view, "post_job_transition");
-//        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(PreviewJob.this,pair);
         startActivity(intent);
         finish();
 

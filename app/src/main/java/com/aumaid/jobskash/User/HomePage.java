@@ -1,17 +1,7 @@
 package com.aumaid.jobskash.User;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Log;
-import android.util.Pair;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -19,42 +9,30 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.aumaid.jobskash.Adapters.JobAdapter;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import com.aumaid.jobskash.Adapters.RVAdapter;
 import com.aumaid.jobskash.Common.LogInSignUp.SignInPage;
-import com.aumaid.jobskash.Common.SuccessScreen;
-import com.aumaid.jobskash.Database.JobHelperClass;
+import com.aumaid.jobskash.Database.DAOJob;
+import com.aumaid.jobskash.Interfaces.RecyclerViewItemClickListener;
+import com.aumaid.jobskash.Models.JobModel;
 import com.aumaid.jobskash.Database.SessionManager;
 import com.aumaid.jobskash.HelperClasses.InternetChecker;
-import com.aumaid.jobskash.Interfaces.RecyclerViewItemClickListener;
 import com.aumaid.jobskash.R;
 import com.aumaid.jobskash.User.PostJobs.CompanyDetails;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-
-import static android.content.ContentValues.TAG;
-import static com.aumaid.jobskash.HelperClasses.AVariables.ABOUT_EMPLOYER;
-import static com.aumaid.jobskash.HelperClasses.AVariables.CONTACT;
-import static com.aumaid.jobskash.HelperClasses.AVariables.CYCLE_SELECTOR;
-import static com.aumaid.jobskash.HelperClasses.AVariables.EMPLOYERS_ADDRESS;
-import static com.aumaid.jobskash.HelperClasses.AVariables.EMPLOYERS_NAME;
-import static com.aumaid.jobskash.HelperClasses.AVariables.EXPERIENCE;
-import static com.aumaid.jobskash.HelperClasses.AVariables.HIRES_REQUIRED;
-import static com.aumaid.jobskash.HelperClasses.AVariables.INDUSTRY_TYPE;
-import static com.aumaid.jobskash.HelperClasses.AVariables.JOB_DESCRIPTION;
-import static com.aumaid.jobskash.HelperClasses.AVariables.JOB_TITLE;
-import static com.aumaid.jobskash.HelperClasses.AVariables.JOB_TYPE;
-import static com.aumaid.jobskash.HelperClasses.AVariables.QUALIFICATIONS;
-import static com.aumaid.jobskash.HelperClasses.AVariables.RANGE_SELECTOR;
-import static com.aumaid.jobskash.HelperClasses.AVariables.SALARY;
-import static com.aumaid.jobskash.HelperClasses.AVariables.SKILL;
 
 public class HomePage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, RecyclerViewItemClickListener {
 
@@ -72,10 +50,16 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
     NavigationView mNavigationView;
 
     /*Recycler View*/
-    RecyclerView mRecyclerView;
-    ArrayList<JobHelperClass> jobModelArrayList;
-    JobAdapter adapter;
-    DatabaseReference mbase;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+    private RVAdapter mAdapter;
+    private RecyclerView mRecyclerView;
+
+    /*Other Variables*/
+    private DAOJob daoJob;
+    private String key = null;
+    private boolean isLoading = false;
+
+
 
 
     @Override
@@ -84,16 +68,41 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         setContentView(R.layout.activity_home_page);
 
         progressBar = findViewById(R.id.progress_bar);
-
+        mSwipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
         mRecyclerView = findViewById(R.id.recyclerview1);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mAdapter = new RVAdapter(this);
+        mRecyclerView.setAdapter(mAdapter);
+        daoJob = new DAOJob();
+
+        /*Load data*/
+        loadData();
+
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+
+
+               LinearLayoutManager linearLayoutManager = (LinearLayoutManager) mRecyclerView.getLayoutManager();
+               int total_items = linearLayoutManager.getItemCount();
+               int last_visible_items = linearLayoutManager.findLastCompletelyVisibleItemPosition();
+
+
+               if(total_items < last_visible_items + 3 ){
+
+                   if(!isLoading){
+                       isLoading = true;
+                       loadData();
+                   }
+
+               }
+
+            }
+        });
 
         /*adding onclick listener for recyclerview*/
 
-        mbase = FirebaseDatabase.getInstance().getReference("Jobs");
-
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        jobModelArrayList = new ArrayList<>();
 
         //Drawer menu
         contentView = findViewById(R.id.content);
@@ -103,14 +112,46 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         drawerMenu();
 
 
-        /*Updating jobs using firebase*/
-        progressBar.setVisibility(View.VISIBLE);
-        addJobs();
+//        /*Updating jobs using firebase*/
+//        progressBar.setVisibility(View.VISIBLE);
+//        addJobs();
 
 
     }
 
 
+    private void loadData(){
+
+        mSwipeRefreshLayout.setRefreshing(true);
+        daoJob.get(key).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ArrayList<JobModel> jobsList = new ArrayList<>();
+
+                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+
+                    JobModel job = dataSnapshot.getValue(JobModel.class);
+                    jobsList.add(job);
+                    key = dataSnapshot.getKey();
+
+                }
+
+                mAdapter.setItems(jobsList);
+                mAdapter.notifyDataSetChanged();
+                isLoading = false;
+                mSwipeRefreshLayout.setRefreshing(false);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+                mSwipeRefreshLayout.setRefreshing(false);
+
+            }
+        });
+
+    }
     //Dealing with navigation bar
     private void drawerMenu() {
         //Navigation View
@@ -206,58 +247,58 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         return true;
     }
 
-    public void addJobs() {
-
-        /*Internet Connectivity Check*/
-        InternetChecker internetChecker = new InternetChecker();
-        if (!internetChecker.isConnected(this)) {
-            Toast.makeText(getApplicationContext(), "No internet connection detected", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        //
-
-
-        // Create a instance of the database and get
-        // its reference
-        mbase
-                = FirebaseDatabase.getInstance()
-                .getReference("NewJobs");
-
-        mRecyclerView = findViewById(R.id.recyclerview1);
-
-        // To display the Recycler view linearly
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(
-                new LinearLayoutManager(this));
-
-        adapter = new JobAdapter(jobModelArrayList, this,this);
-
-        // It is a class provide by the FirebaseUI to make a
-        // query in the database to fetch appropriate data
-
-        mbase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                jobModelArrayList.clear();//Avoid duplicate cards
-
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-
-                    JobHelperClass job = dataSnapshot.getValue(JobHelperClass.class);
-                    jobModelArrayList.add(job);
-                }
-
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        mRecyclerView.setAdapter(adapter);
-        progressBar.setVisibility(View.GONE);
-    }
+//    public void addJobs() {
+//
+//        /*Internet Connectivity Check*/
+//        InternetChecker internetChecker = new InternetChecker();
+//        if (!internetChecker.isConnected(this)) {
+//            Toast.makeText(getApplicationContext(), "No internet connection detected", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//        //
+//
+//
+//        // Create a instance of the database and get
+//        // its reference
+//        mbase
+//                = FirebaseDatabase.getInstance()
+//                .getReference("NewJobs");
+//
+//        mRecyclerView = findViewById(R.id.recyclerview1);
+//
+//        // To display the Recycler view linearly
+//        mRecyclerView.setHasFixedSize(true);
+//        mRecyclerView.setLayoutManager(
+//                new LinearLayoutManager(this));
+//
+//        adapter = new JobAdapter(jobModelArrayList, this,this);
+//
+//        // It is a class provide by the FirebaseUI to make a
+//        // query in the database to fetch appropriate data
+//
+//        mbase.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                jobModelArrayList.clear();//Avoid duplicate cards
+//
+//                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+//
+//                    JobHelperClass job = dataSnapshot.getValue(JobHelperClass.class);
+//                    jobModelArrayList.add(job);
+//                }
+//
+//                adapter.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//
+//        mRecyclerView.setAdapter(adapter);
+//        progressBar.setVisibility(View.GONE);
+//    }
 
     public void postJobScreen() {
 
@@ -268,9 +309,14 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
 
     @Override
     public void onRecyclerViewItemCLickListener(int position) {
-        Intent intent = new Intent(getApplicationContext(),JobApplicationPage.class);
-        JobHelperClass job = jobModelArrayList.get(position);
-        intent.putExtra("JOB",job);
-        startActivity(intent);
+
     }
+
+//    @Override
+//    public void onRecyclerViewItemCLickListener(int position) {
+//        Intent intent = new Intent(getApplicationContext(),JobApplicationPage.class);
+//        JobHelperClass job = jobModelArrayList.get(position);
+//        intent.putExtra("JOB",job);
+//        startActivity(intent);
+//    }
 }

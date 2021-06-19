@@ -1,9 +1,9 @@
-package com.aumaid.jobskash.Database;
+package com.aumaid.jobskash.Models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class JobHelperClass implements Parcelable {
+public class JobModel implements Parcelable {
 
     private String companyName;
     private String companyAddress;
@@ -20,10 +20,10 @@ public class JobHelperClass implements Parcelable {
     private String qualifications;
     private String postedOn;
 
-    public JobHelperClass() {
+    public JobModel() {
     }
 
-    public JobHelperClass(String companyName, String companyAddress, String industryType, String email, String aboutCompany, String jobTitle, String jobType, String numberOfHires, String salary, String skills, String responsibilities, String experience, String qualifications, String postedOn) {
+    public JobModel(String companyName, String companyAddress, String industryType, String email, String aboutCompany, String jobTitle, String jobType, String numberOfHires, String salary, String skills, String responsibilities, String experience, String qualifications, String postedOn) {
         this.companyName = companyName;
         this.companyAddress = companyAddress;
         this.industryType = industryType;
@@ -42,7 +42,7 @@ public class JobHelperClass implements Parcelable {
 
     }
 
-    protected JobHelperClass(Parcel in) {
+    protected JobModel(Parcel in) {
         companyName = in.readString();
         companyAddress = in.readString();
         industryType = in.readString();
@@ -59,15 +59,15 @@ public class JobHelperClass implements Parcelable {
         postedOn = in.readString();
     }
 
-    public static final Creator<JobHelperClass> CREATOR = new Creator<JobHelperClass>() {
+    public static final Creator<JobModel> CREATOR = new Creator<JobModel>() {
         @Override
-        public JobHelperClass createFromParcel(Parcel in) {
-            return new JobHelperClass(in);
+        public JobModel createFromParcel(Parcel in) {
+            return new JobModel(in);
         }
 
         @Override
-        public JobHelperClass[] newArray(int size) {
-            return new JobHelperClass[size];
+        public JobModel[] newArray(int size) {
+            return new JobModel[size];
         }
     };
 

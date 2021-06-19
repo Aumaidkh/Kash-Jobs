@@ -3,15 +3,12 @@ package com.aumaid.jobskash.User;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.aumaid.jobskash.Database.JobHelperClass;
+import com.aumaid.jobskash.Models.JobModel;
 import com.aumaid.jobskash.R;
-import com.aumaid.jobskash.User.Fragments.JobDescriptionFragment;
 
 public class JobApplicationPage extends AppCompatActivity {
 
@@ -90,7 +87,7 @@ public class JobApplicationPage extends AppCompatActivity {
     private void populateTextViews() {
         /*Receive data from previous*/
         if (getIntent().hasExtra("JOB")) {
-            JobHelperClass job = getIntent().getParcelableExtra("JOB");
+            JobModel job = getIntent().getParcelableExtra("JOB");
             mJobName.setText(job.getJobTitle());
             mCompanyName.setText(job.getCompanyName());
             mCompanyAddress.setText(job.getCompanyAddress());
