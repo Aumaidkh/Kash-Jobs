@@ -72,7 +72,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         mRecyclerView = findViewById(R.id.recyclerview1);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mAdapter = new RVAdapter(this);
+        mAdapter = new RVAdapter(this,this::onRecyclerViewItemCLickListener);
         mRecyclerView.setAdapter(mAdapter);
         daoJob = new DAOJob();
 
