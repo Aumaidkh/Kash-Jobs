@@ -58,6 +58,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
     private DAOJob daoJob;
     private String key = null;
     private boolean isLoading = false;
+    private ArrayList<JobModel> jobs = new ArrayList<>();
 
 
 
@@ -72,7 +73,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         mRecyclerView = findViewById(R.id.recyclerview1);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mAdapter = new RVAdapter(this,this::onRecyclerViewItemCLickListener);
+        mAdapter = new RVAdapter(this, this);
         mRecyclerView.setAdapter(mAdapter);
         daoJob = new DAOJob();
 
@@ -121,17 +122,18 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
 
 
     private void loadData(){
-
+        ArrayList<JobModel> jobsList = new ArrayList<>();
         mSwipeRefreshLayout.setRefreshing(true);
         daoJob.get(key).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ArrayList<JobModel> jobsList = new ArrayList<>();
+
 
                 for(DataSnapshot dataSnapshot: snapshot.getChildren()){
 
                     JobModel job = dataSnapshot.getValue(JobModel.class);
                     jobsList.add(job);
+                    jobs.add(job);
                     key = dataSnapshot.getKey();
 
                 }
@@ -309,14 +311,14 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
 
     @Override
     public void onRecyclerViewItemCLickListener(int position) {
-
+        try {
+            Intent intent = new Intent(getApplicationContext(), JobApplicationPage.class);
+            JobModel job = jobs.get(position);
+            intent.putExtra("JOB", job);
+            startActivity(intent);
+        }catch (Exception e){
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
-//    @Override
-//    public void onRecyclerViewItemCLickListener(int position) {
-//        Intent intent = new Intent(getApplicationContext(),JobApplicationPage.class);
-//        JobHelperClass job = jobModelArrayList.get(position);
-//        intent.putExtra("JOB",job);
-//        startActivity(intent);
-//    }
 }

@@ -27,7 +27,7 @@
         <activity android:name=".Common.LogInSignUp.SignUpFirstPage" />
         <activity android:name=".Common.LogInSignUp.SignInPage" />
         <activity android:name=".Common.WelcomeScreen" />
-        <activity android:name=".Common.SplashScreen">
+        <activity android:name=".Common.SplashScreen" android:theme="@style/Theme.KashJobs.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

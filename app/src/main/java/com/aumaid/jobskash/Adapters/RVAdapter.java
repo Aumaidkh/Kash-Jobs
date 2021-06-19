@@ -20,7 +20,7 @@ public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
     private ArrayList<JobModel> jobList;
 
-    public RVAdapter( Context context, RecyclerViewItemClickListener onRecyclerViewItemClickListener) {
+    public RVAdapter(Context context, RecyclerViewItemClickListener onRecyclerViewItemClickListener) {
         this.jobList = new ArrayList<>();
         this.context = context;
         this.onRecyclerViewItemClickListener = onRecyclerViewItemClickListener;
